@@ -1,0 +1,3778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW India Luxury Showroom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        :root {
+            --bg: #07101d;
+            --bg-soft: #0d1a2e;
+            --surface: rgba(12, 21, 37, 0.72);
+            --surface-strong: rgba(255, 255, 255, 0.08);
+            --card-light: rgba(255, 255, 255, 0.74);
+            --card-dark: rgba(8, 16, 29, 0.72);
+            --line: rgba(255, 255, 255, 0.12);
+            --text: #f7f9fc;
+            --muted: #a9b8d0;
+            --ink: #0e1520;
+            --ink-soft: #59697f;
+            --accent: #5cb4ff;
+            --accent-strong: #1f8bff;
+            --accent-warm: #c1e6ff;
+            --success: #39d495;
+            --warning: #ffc85c;
+            --danger: #ff6f78;
+            --radius-xl: 34px;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+            --shadow-soft: 0 20px 45px rgba(11, 25, 45, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Manrope", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(31, 139, 255, 0.18), transparent 24%),
+                radial-gradient(circle at 80% 0%, rgba(124, 202, 255, 0.12), transparent 18%),
+                linear-gradient(180deg, #050d17 0%, #091423 28%, #eff4fa 28%, #eff4fa 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        body.light-mode {
+            background:
+                radial-gradient(circle at top left, rgba(31, 139, 255, 0.1), transparent 20%),
+                linear-gradient(180deg, #e8f0fb 0%, #f7f9fd 40%, #ffffff 100%);
+            color: var(--ink);
+        }
+
+        body.loading {
+            overflow: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            width: min(1240px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 1200;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(circle at center, rgba(92, 180, 255, 0.16), transparent 20%),
+                linear-gradient(180deg, #07101d, #02060c);
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-mark {
+            display: grid;
+            gap: 1rem;
+            justify-items: center;
+        }
+
+        .loading-mark .brand-ring {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg, #ffffff 0 25%, #111111 25% 50%, #5cb4ff 50% 75%, #ffffff 75% 100%);
+            outline: 4px solid rgba(255, 255, 255, 0.2);
+            outline-offset: 6px;
+            animation: spin 1.8s linear infinite;
+        }
+
+        .loading-mark p {
+            letter-spacing: 0.22em;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background: rgba(6, 12, 22, 0.72);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .topbar-inner {
+            width: min(1240px, calc(100% - 2rem));
+            margin: 0 auto;
+            min-height: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.8rem 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.95rem;
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg, #ffffff 0 25%, #111111 25% 50%, #5cb4ff 50% 75%, #ffffff 75% 100%);
+            outline: 3px solid rgba(255, 255, 255, 0.16);
+            outline-offset: 4px;
+        }
+
+        .brand-copy strong {
+            display: block;
+            font-size: 0.98rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .brand-copy span {
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .nav-links,
+        .nav-actions,
+        .hero-actions,
+        .section-actions,
+        .summary-strip,
+        .feature-grid,
+        .model-grid,
+        .stat-grid,
+        .icon-grid,
+        .ownership-grid,
+        .testimonial-grid,
+        .footer-grid,
+        .config-grid,
+        .compare-grid,
+        .card-actions,
+        .selection-row,
+        .drawer-actions,
+        .auth-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .nav-link,
+        .icon-btn,
+        .mini-chip {
+            color: var(--text);
+            background: transparent;
+            border-radius: 999px;
+            padding: 0.72rem 1rem;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active,
+        .icon-btn:hover,
+        .mini-chip:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .icon-btn {
+            position: relative;
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            padding: 0;
+        }
+
+        .badge {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 0.35rem;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: var(--accent-strong);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .hero {
+            padding: 2.3rem 0 4rem;
+        }
+
+        .hero-panel {
+            position: relative;
+            min-height: 86vh;
+            overflow: hidden;
+            border-radius: 40px;
+            box-shadow: var(--shadow);
+            background:
+                linear-gradient(115deg, rgba(4, 10, 18, 0.94) 12%, rgba(4, 10, 18, 0.48) 58%),
+                url("https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1800&q=80") center/cover;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.28;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0.6;
+        }
+
+        .hero-orb.one {
+            width: 280px;
+            height: 280px;
+            right: -40px;
+            top: 60px;
+            background: radial-gradient(circle, rgba(92, 180, 255, 0.36), transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-orb.two {
+            width: 220px;
+            height: 220px;
+            left: -30px;
+            bottom: 40px;
+            background: radial-gradient(circle, rgba(193, 230, 255, 0.24), transparent 70%);
+            animation: float 7.5s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-18px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+            min-height: 86vh;
+            padding: 4rem;
+            align-items: end;
+        }
+
+        .hero-copy {
+            max-width: 620px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #deecff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            margin-bottom: 1.15rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        .pricing-value,
+        .section-title {
+            font-family: "Syne", sans-serif;
+        }
+
+        .hero-copy h1 {
+            font-size: clamp(3rem, 8vw, 6.4rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-copy p {
+            color: var(--muted);
+            font-size: 1.04rem;
+            line-height: 1.8;
+            max-width: 52ch;
+        }
+
+        .hero-actions,
+        .section-actions,
+        .card-actions,
+        .auth-actions {
+            margin-top: 1.6rem;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.95rem 1.35rem;
+            font-weight: 800;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: white;
+            box-shadow: 0 18px 34px rgba(31, 139, 255, 0.28);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .btn-dark {
+            background: #111a29;
+            color: white;
+        }
+
+        .hero-summary {
+            align-self: end;
+            justify-self: end;
+            width: min(420px, 100%);
+            padding: 1.35rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-summary .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .summary-strip {
+            margin-top: 1.25rem;
+        }
+
+        .summary-card {
+            flex: 1 1 120px;
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-card span {
+            display: block;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .summary-card strong {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 1.02rem;
+        }
+
+        .main-content {
+            color: var(--ink);
+            padding-bottom: 5rem;
+        }
+
+        .section {
+            padding: 1.8rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .section-header p,
+        .card-copy,
+        .form-help,
+        .muted {
+            color: var(--ink-soft);
+            line-height: 1.75;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1;
+        }
+
+        .glass-card,
+        .feature-card,
+        .model-card,
+        .feature-icon-card,
+        .ownership-card,
+        .quote-card,
+        .booking-card,
+        .ev-panel,
+        .configurator-panel,
+        .stats-panel,
+        .compare-card,
+        .drawer-item,
+        .detail-panel,
+        .auth-card,
+        .drawer,
+        .hero-stat {
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.76);
+            border: 1px solid rgba(16, 32, 54, 0.08);
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(12px);
+        }
+
+        .feature-grid,
+        .icon-grid,
+        .ownership-grid,
+        .testimonial-grid,
+        .footer-grid,
+        .compare-grid {
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .feature-card,
+        .feature-icon-card,
+        .ownership-card,
+        .quote-card,
+        .compare-card {
+            padding: 1.4rem;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 1rem;
+            color: var(--accent-strong);
+            background: linear-gradient(145deg, rgba(92, 180, 255, 0.18), rgba(31, 139, 255, 0.06));
+        }
+
+        .parallax-strip {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .parallax-card {
+            position: relative;
+            min-height: 440px;
+            border-radius: 34px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background:
+                linear-gradient(120deg, rgba(4, 10, 18, 0.9), rgba(4, 10, 18, 0.36)),
+                url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1800&q=80") center/cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: end;
+            padding: 2.4rem;
+            color: white;
+        }
+
+        .model-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .filter-chip,
+        .selection-chip,
+        .theme-toggle {
+            border-radius: 999px;
+            padding: 0.82rem 1rem;
+            border: 1px solid rgba(16, 32, 54, 0.12);
+            background: white;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .filter-chip.active,
+        .selection-chip.active,
+        .theme-toggle.active {
+            background: #0f1727;
+            color: white;
+            border-color: #0f1727;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .model-card {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .model-visual {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-visual img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .model-card:hover .model-visual img {
+            transform: scale(1.08);
+        }
+
+        .model-visual::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 45%;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.7));
+        }
+
+        .model-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 2;
+            padding: 0.45rem 0.72rem;
+            border-radius: 999px;
+            background: rgba(7, 16, 29, 0.72);
+            color: white;
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .model-body {
+            padding: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            flex: 1;
+        }
+
+        .model-topline,
+        .model-stats,
+        .stats-row,
+        .drawer-head,
+        .drawer-item,
+        .compare-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .pricing-value {
+            color: var(--accent-strong);
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .spec-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        .spec-badges span,
+        .selection-chip,
+        .mode-chip {
+            padding: 0.46rem 0.7rem;
+            border-radius: 999px;
+            background: #edf5ff;
+            color: #1b2e49;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .icon-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .stats-panel {
+            padding: 1.4rem;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .hero-stat {
+            padding: 1rem;
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 1.8rem;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .configurator-wrap {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 1.25rem;
+        }
+
+        .configurator-panel {
+            padding: 1.5rem;
+        }
+
+        .config-visual {
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at top left, rgba(92, 180, 255, 0.28), transparent 28%),
+                linear-gradient(180deg, #111d33, #091220);
+            padding: 1.3rem;
+        }
+
+        .config-stage {
+            position: relative;
+            min-height: 100%;
+            overflow: hidden;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+        }
+
+        .config-stage img {
+            width: 100%;
+            min-height: 460px;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .light-glow {
+            position: absolute;
+            top: 56%;
+            width: 74px;
+            height: 34px;
+            border-radius: 50%;
+            filter: blur(14px);
+            opacity: 0;
+            transition: opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+            pointer-events: none;
+        }
+
+        .light-glow.left { left: 12%; }
+        .light-glow.right { right: 12%; }
+        .light-glow.active { opacity: 0.95; }
+
+        .config-floating {
+            position: absolute;
+            left: 1.2rem;
+            right: 1.2rem;
+            bottom: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .floating-pill {
+            padding: 0.66rem 0.84rem;
+            border-radius: 999px;
+            background: rgba(8, 16, 29, 0.72);
+            color: white;
+            font-size: 0.84rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .config-detail {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .config-summary {
+            padding: 1rem;
+            border-radius: 22px;
+            background: #f4f8fc;
+            color: var(--ink-soft);
+            line-height: 1.75;
+        }
+
+        .selection-group {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .selection-group h4 {
+            color: var(--ink);
+        }
+
+        .selection-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .color-chip,
+        .wheel-chip,
+        .interior-chip,
+        .light-chip,
+        .mode-chip {
+            border-radius: 18px;
+            padding: 0.8rem 0.95rem;
+            border: 1px solid #d5deeb;
+            background: white;
+            color: #203047;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .color-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .color-chip.active,
+        .wheel-chip.active,
+        .interior-chip.active,
+        .light-chip.active,
+        .mode-chip.active {
+            border-color: #0e1520;
+            box-shadow: 0 10px 24px rgba(17, 32, 58, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid rgba(13, 20, 32, 0.14);
+        }
+
+        .pricing-box {
+            display: grid;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #eef6ff, #f8fbff);
+        }
+
+        .pricing-value {
+            font-size: 2rem;
+        }
+
+        .booking-card {
+            padding: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .field {
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .field label {
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid #d5deeb;
+            outline: none;
+            background: white;
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--accent-strong);
+            box-shadow: 0 0 0 4px rgba(31, 139, 255, 0.12);
+        }
+
+        .ev-panel {
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .ev-copy,
+        .ev-visual {
+            padding: 2rem;
+        }
+
+        .ev-visual {
+            background:
+                linear-gradient(120deg, rgba(7, 16, 29, 0.92), rgba(7, 16, 29, 0.44)),
+                url("https://images.unsplash.com/photo-1617531653520-4893f7a7f978?auto=format&fit=crop&w=1400&q=80") center/cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .range-bar {
+            margin-top: 1rem;
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(11, 25, 45, 0.12);
+            overflow: hidden;
+        }
+
+        .range-fill {
+            width: 81%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #5cb4ff, #5ef1d4);
+            animation: charge 4.8s ease-in-out infinite;
+        }
+
+        @keyframes charge {
+            0%, 100% { width: 64%; }
+            50% { width: 90%; }
+        }
+
+        .ownership-grid {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .testimonial-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .quote-card .stars {
+            display: flex;
+            gap: 0.2rem;
+            color: #ffbb42;
+            margin-bottom: 1rem;
+        }
+
+        .quote-user {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .quote-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .compare-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .compare-row {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(16, 32, 54, 0.08);
+        }
+
+        .compare-row:last-child {
+            border-bottom: 0;
+        }
+
+        .drawer,
+        .auth-card,
+        .modal-card {
+            width: min(940px, 100%);
+            max-height: 86vh;
+            overflow: auto;
+            border-radius: 32px;
+            background: white;
+            color: var(--ink);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(4, 10, 18, 0.68);
+            backdrop-filter: blur(14px);
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .modal-head,
+        .drawer-head {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .close-btn,
+        .remove-btn {
+            border-radius: 999px;
+            padding: 0.74rem 0.92rem;
+            background: #eff4fb;
+            color: #1b2e49;
+            border: 1px solid #d5deeb;
+        }
+
+        .close-btn {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            padding: 0;
+        }
+
+        .modal-gallery,
+        .modal-info {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .modal-gallery {
+            grid-template-columns: 1.12fr 0.88fr;
+        }
+
+        .modal-hero-image {
+            min-height: 320px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #dfe8f4;
+        }
+
+        .modal-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .thumb-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 18px;
+            cursor: pointer;
+        }
+
+        .modal-info {
+            grid-template-columns: 1.15fr 0.85fr;
+            margin-top: 1rem;
+        }
+
+        .detail-panel {
+            background: #f4f8fc;
+        }
+
+        .detail-list {
+            display: grid;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .detail-list div {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .auth-card {
+            width: min(470px, 100%);
+        }
+
+        .auth-card form,
+        .drawer-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .drawer-list {
+            margin-top: 1rem;
+        }
+
+        .drawer-item {
+            padding: 1rem;
+        }
+
+        .drawer-actions button {
+            border-radius: 999px;
+            padding: 0.75rem 1rem;
+            font-weight: 800;
+        }
+
+        .drawer-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: white;
+        }
+
+        .drawer-secondary {
+            background: white;
+            color: #203047;
+            border: 1px solid #d5deeb;
+        }
+
+        .toast {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 1150;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .toast-message {
+            min-width: 260px;
+            max-width: 360px;
+            padding: 0.95rem 1rem;
+            border-radius: 18px;
+            color: white;
+            background: #0e1521;
+            box-shadow: var(--shadow);
+            animation: slideIn 0.22s ease;
+        }
+
+        .toast-message.success { border-left: 4px solid var(--success); }
+        .toast-message.error { border-left: 4px solid var(--danger); }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bmw-chat-widget {
+            position: fixed;
+            right: 1rem;
+            bottom: 5.75rem;
+            z-index: 980;
+            width: min(420px, calc(100% - 2rem));
+            height: min(620px, calc(100vh - 7rem));
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 24px;
+            background: #ffffff;
+            color: var(--ink);
+            border: 1px solid rgba(16, 32, 54, 0.12);
+            box-shadow: var(--shadow);
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            transition: transform 0.22s ease, opacity 0.22s ease;
+        }
+
+        .bmw-chat-widget.is-hidden {
+            transform: translateY(16px) scale(0.96);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .bmw-chat-header {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 1rem;
+            color: white;
+            background: linear-gradient(135deg, #07101d, #123159);
+        }
+
+        .bmw-chat-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            font-weight: 800;
+            color: white;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        }
+
+        .bmw-chat-title {
+            flex: 1;
+        }
+
+        .bmw-chat-title strong {
+            display: block;
+            font-size: 0.98rem;
+        }
+
+        .bmw-chat-title span {
+            display: block;
+            color: #b7c8dc;
+            font-size: 0.78rem;
+            margin-top: 0.12rem;
+        }
+
+        .bmw-chat-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .bmw-chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .bmw-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            background: linear-gradient(180deg, #f8fbff, #eef4fb);
+        }
+
+        .bmw-chat-message {
+            width: min(86%, 340px);
+            display: flex;
+            gap: 0.55rem;
+            align-items: flex-end;
+            animation: chatMessageIn 0.2s ease;
+        }
+
+        @keyframes chatMessageIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bmw-chat-message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .bmw-chat-message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        }
+
+        .bmw-chat-message.user .bmw-chat-message-avatar {
+            background: linear-gradient(135deg, var(--success), #149d66);
+        }
+
+        .bmw-chat-bubble {
+            white-space: pre-line;
+            border-radius: 18px 18px 18px 6px;
+            padding: 0.78rem 0.9rem;
+            color: #172236;
+            line-height: 1.58;
+            font-size: 0.9rem;
+            background: white;
+            border: 1px solid rgba(16, 24, 39, 0.06);
+            box-shadow: 0 10px 22px rgba(16, 36, 64, 0.07);
+        }
+
+        .bmw-chat-message.user .bmw-chat-bubble {
+            color: white;
+            border-color: transparent;
+            border-radius: 18px 18px 6px 18px;
+            background: linear-gradient(135deg, var(--accent-strong), #0b6fdf);
+        }
+
+        .bmw-chat-typing {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.28rem;
+            min-width: 2.4rem;
+        }
+
+        .bmw-chat-typing span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #93a4ba;
+            animation: chatTypingPulse 1s ease-in-out infinite;
+        }
+
+        .bmw-chat-typing span:nth-child(2) {
+            animation-delay: 0.14s;
+        }
+
+        .bmw-chat-typing span:nth-child(3) {
+            animation-delay: 0.28s;
+        }
+
+        @keyframes chatTypingPulse {
+            0%, 70%, 100% {
+                transform: translateY(0);
+                opacity: 0.45;
+            }
+            35% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+
+        .bmw-chat-suggestions {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.75rem 1rem 0.35rem;
+            background: white;
+        }
+
+        .bmw-chat-suggestion {
+            flex: 0 0 auto;
+            border-radius: 999px;
+            padding: 0.58rem 0.75rem;
+            color: #1c2a3d;
+            background: #f8fbff;
+            border: 1px solid #dce5f1;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .bmw-chat-suggestion:hover {
+            border-color: var(--accent-strong);
+            background: #eef6ff;
+        }
+
+        .bmw-chat-form {
+            display: flex;
+            gap: 0.65rem;
+            padding: 0.9rem 1rem 1rem;
+            border-top: 1px solid #dce5f1;
+            background: white;
+        }
+
+        .bmw-chat-form input {
+            width: 100%;
+            min-width: 0;
+            border: 1px solid #dce5f1;
+            border-radius: 999px;
+            padding: 0.78rem 0.95rem;
+            color: var(--ink);
+            outline: none;
+            background: #f8fbff;
+        }
+
+        .bmw-chat-form input:focus {
+            border-color: var(--accent-strong);
+            box-shadow: 0 0 0 4px rgba(31, 139, 255, 0.13);
+            background: white;
+        }
+
+        .bmw-chat-form button {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        }
+
+        .bmw-chat-form button:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+        }
+
+        .bmw-chat-toggle {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 990;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            box-shadow: 0 18px 30px rgba(31, 139, 255, 0.28);
+        }
+
+        @media (max-width: 560px) {
+            .bmw-chat-widget {
+                right: 0.75rem;
+                bottom: 5.2rem;
+                width: calc(100% - 1.5rem);
+                height: min(620px, calc(100vh - 6.4rem));
+                border-radius: 20px;
+            }
+
+            .bmw-chat-message {
+                width: 94%;
+            }
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding: 3rem 0 4rem;
+            background: #07101d;
+            color: white;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1.2fr repeat(4, 1fr);
+        }
+
+        .footer h4 {
+            margin-bottom: 0.85rem;
+        }
+
+        .footer ul {
+            list-style: none;
+            display: grid;
+            gap: 0.7rem;
+            color: var(--muted);
+        }
+
+        .newsletter {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter input {
+            flex: 1 1 180px;
+            min-width: 0;
+            padding: 0.9rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+
+        .social-row a {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 1100px) {
+            .hero-content,
+            .configurator-wrap,
+            .ev-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid,
+            .icon-grid,
+            .ownership-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .model-grid,
+            .testimonial-grid,
+            .footer-grid,
+            .compare-grid,
+            .stat-grid,
+            .modal-gallery,
+            .modal-info {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-summary {
+                justify-self: start;
+            }
+        }
+
+        @media (max-width: 780px) {
+            .topbar-inner,
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-panel {
+                min-height: auto;
+            }
+
+            .hero-content {
+                min-height: auto;
+                padding: 2.3rem 1.4rem;
+            }
+
+            .section-header,
+            .model-topline,
+            .compare-row,
+            .drawer-item,
+            .footer-bottom {
+                flex-direction: column;
+            }
+
+            .feature-grid,
+            .icon-grid,
+            .ownership-grid,
+            .model-grid,
+            .testimonial-grid,
+            .footer-grid,
+            .compare-grid,
+            .stat-grid,
+            .modal-gallery,
+            .modal-info,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-mark">
+            <div class="brand-ring"></div>
+            <p>Loading BMW Showroom</p>
+        </div>
+    </div>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true"></div>
+                <div class="brand-copy">
+                    <strong>BMW India</strong>
+                    <span id="welcomeLabel">Guest mode</span>
+                </div>
+            </div>
+
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="#hero">Home</a>
+                <a class="nav-link" href="#models">Models</a>
+                <a class="nav-link" href="#configurator">Configurator</a>
+                <a class="nav-link" href="#ownership">Ownership</a>
+                <a class="nav-link" href="#booking">Book Test Drive</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">Luxury Light</button>
+                <button class="icon-btn" id="authTrigger" title="Login / Register"><i class="fa-solid fa-user"></i></button>
+                <button class="icon-btn" id="cartTrigger" title="Cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <button class="icon-btn" id="wishlistTrigger" title="Wishlist">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="badge" id="wishlistCount">0</span>
+                </button>
+                <button class="icon-btn" id="locationTrigger" title="Dealer location"><i class="fa-solid fa-location-dot"></i></button>
+                <button class="icon-btn hidden" id="logoutTrigger" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="page-shell">
+                <div class="hero-panel reveal">
+                    <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1600&q=80">
+                        <source src="https://cdn.pixabay.com/video/2023/03/15/154793-808470353_large.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-orb one"></div>
+                    <div class="hero-orb two"></div>
+                    <div class="hero-content">
+                        <div class="hero-copy">
+                            <div class="eyebrow"><i class="fa-solid fa-bolt"></i> Sheer Driving Pleasure</div>
+                            <h1>THE i7 <br> Electrifying Luxury</h1>
+                            <p>
+                                A cinematic BMW digital showroom inspired by the premium storytelling of BMW India,
+                                designed as a modern luxury configurator with immersive motion, elegant product browsing,
+                                and browser-saved ownership journeys.
+                            </p>
+                            <div class="hero-actions">
+                                <button class="btn btn-primary" id="discoverHeroBtn">Discover Now</button>
+                                <button class="btn btn-secondary" id="buildHeroBtn">Build Your BMW</button>
+                                <button class="btn btn-secondary" id="bookHeroBtn">Book Test Drive</button>
+                            </div>
+                        </div>
+
+                        <aside class="hero-summary">
+                            <h3 class="section-title">Digital Showroom</h3>
+                            <p class="muted">
+                                Explore premium BMW models, personalize your build, save it locally, compare variants,
+                                and book your luxury test drive in a production-style front-end flow.
+                            </p>
+                            <div class="summary-strip">
+                                <div class="summary-card">
+                                    <span>Signed In</span>
+                                    <strong id="summaryUser">No user</strong>
+                                </div>
+                                <div class="summary-card">
+                                    <span>Saved Garage</span>
+                                    <strong id="summaryGarage">Browser local</strong>
+                                </div>
+                                <div class="summary-card">
+                                    <span>Dealer Signal</span>
+                                    <strong id="summaryLocation">Not requested</strong>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-content">
+            <div class="page-shell">
+                <section class="section reveal">
+                    <div class="stats-panel">
+                        <div class="section-header">
+                            <div>
+                                <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">BMW Digital Experience</div>
+                                <h2 class="section-title">Luxury showroom interactions</h2>
+                            </div>
+                            <p>
+                                Designed to feel premium, futuristic, and performance-oriented while keeping your current working browser features.
+                            </p>
+                        </div>
+                        <div class="stat-grid">
+                            <div class="hero-stat">
+                                <strong data-counter="9">0</strong>
+                                <span class="muted">BMW models showcased</span>
+                            </div>
+                            <div class="hero-stat">
+                                <strong data-counter="8">0</strong>
+                                <span class="muted">Luxury technology cards</span>
+                            </div>
+                            <div class="hero-stat">
+                                <strong data-counter="360">0</strong>
+                                <span class="muted">Configurator story angle</span>
+                            </div>
+                            <div class="hero-stat">
+                                <strong data-counter="100">0</strong>
+                                <span class="muted">Browser-persisted experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section reveal">
+                    <div class="feature-grid">
+                        <article class="feature-card">
+                            <div class="feature-icon"><i class="fa-solid fa-images"></i></div>
+                            <h3>Immersive product discovery</h3>
+                            <p class="card-copy">Cinematic hero visuals, reveal motion, hover zoom, and premium model browsing.</p>
+                        </article>
+                        <article class="feature-card">
+                            <div class="feature-icon"><i class="fa-solid fa-car-side"></i></div>
+                            <h3>Interactive configurator</h3>
+                            <p class="card-copy">Change exterior color, wheels, interior, headlight glow, and day or night preview modes.</p>
+                        </article>
+                        <article class="feature-card">
+                            <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+                            <h3>Authentication and saved garage</h3>
+                            <p class="card-copy">Register, login, preserve cart, wishlist, configuration, location, and booking details locally.</p>
+                        </article>
+                        <article class="feature-card">
+                            <div class="feature-icon"><i class="fa-solid fa-robot"></i></div>
+                            <h3>AI showroom assistant</h3>
+                            <p class="card-copy">A lightweight recommendation helper suggests BMW models by budget, lifestyle, and power focus.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="section parallax-strip reveal">
+                    <div class="parallax-card">
+                        <div>
+                            <div class="eyebrow"><i class="fa-solid fa-gem"></i> Flagship Storytelling</div>
+                            <h2 class="section-title" style="color:white;">The modern luxury sedan, retold for digital.</h2>
+                            <p style="max-width:56ch; margin-top:1rem; color:#d2deef; line-height:1.8;">
+                                Premium motion, glassmorphism panels, strong typography, and product-first storytelling build a BMW-inspired online experience without losing your functional front-end system.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section reveal" id="models">
+                    <div class="section-header">
+                        <div>
+                            <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">BMW Model Showcase</div>
+                            <h2 class="section-title">Explore the lineup</h2>
+                        </div>
+                        <p>
+                            Browse electric, luxury, performance, SUVs, and limited editions with quick stats, pricing, and premium preview cards.
+                        </p>
+                    </div>
+                    <div class="model-filter" id="modelFilter"></div>
+                    <div class="model-grid" id="modelGrid"></div>
+                </section>
+
+                <section class="section reveal">
+                    <div class="section-header">
+                        <div>
+                            <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">Premium Technology</div>
+                            <h2 class="section-title">BMW luxury features</h2>
+                        </div>
+                        <p>
+                            Signature digital technologies presented as premium cards with subtle motion and glass-backed surfaces.
+                        </p>
+                    </div>
+                    <div class="icon-grid" id="featureGrid"></div>
+                </section>
+
+                <section class="section reveal" id="configurator">
+                    <div class="section-header">
+                        <div>
+                            <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">Interactive Configurator</div>
+                            <h2 class="section-title">Build your BMW iX xDrive50</h2>
+                        </div>
+                        <p>
+                            One focused configuration with real-time color switching, interior selection, wheel styling, headlight animation, day or night mode, live pricing, and local save.
+                        </p>
+                    </div>
+
+                    <div class="configurator-wrap">
+                        <div class="configurator-panel config-visual">
+                            <div class="config-stage">
+                                <img id="configImage" src="" alt="BMW configuration preview">
+                                <div class="light-glow left" id="leftLightGlow"></div>
+                                <div class="light-glow right" id="rightLightGlow"></div>
+                                <div class="config-floating">
+                                    <span class="floating-pill" id="configModelLabel">Model</span>
+                                    <span class="floating-pill" id="configColorLabel">Color</span>
+                                    <span class="floating-pill" id="configWheelLabel">Wheels</span>
+                                    <span class="floating-pill" id="configInteriorLabel">Interior</span>
+                                    <span class="floating-pill" id="configLightLabel">Lights</span>
+                                    <span class="floating-pill" id="configModeLabel">Mode</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="configurator-panel config-detail">
+                            <div>
+                                <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">Configuration Studio</div>
+                                <h3 id="configModelName" class="section-title" style="font-size:2.25rem;"></h3>
+                                <p id="configTagline" class="muted" style="margin-top:0.6rem;"></p>
+                            </div>
+
+                            <div class="pricing-box">
+                                <span class="muted">Live pricing</span>
+                                <div class="pricing-value" id="configPrice"></div>
+                                <span id="configPriceNote" class="muted">Includes selected options and showroom luxury package.</span>
+                            </div>
+
+                            <div class="selection-group">
+                                <h4>Selected configuration</h4>
+                                <div class="selection-row" id="configModelOptions"></div>
+                            </div>
+
+                            <div class="selection-group">
+                                <h4>Exterior color</h4>
+                                <div class="selection-row" id="configColorOptions"></div>
+                            </div>
+
+                            <div class="selection-group">
+                                <h4>Wheel design</h4>
+                                <div class="selection-row" id="configWheelOptions"></div>
+                            </div>
+
+                            <div class="selection-group">
+                                <h4>Interior environment</h4>
+                                <div class="selection-row" id="configInteriorOptions"></div>
+                            </div>
+
+                            <div class="selection-group">
+                                <h4>Headlight animation</h4>
+                                <div class="selection-row" id="configLightOptions"></div>
+                            </div>
+
+                            <div class="selection-group">
+                                <h4>Day / Night preview</h4>
+                                <div class="selection-row" id="configModeOptions"></div>
+                            </div>
+
+                            <div class="config-summary" id="configSummary"></div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-primary" id="saveBuildBtn">Save Configuration</button>
+                                <button class="btn btn-dark" id="addConfigCartBtn">Add to Cart</button>
+                                <button class="btn btn-secondary" id="addConfigWishlistBtn" style="color:#203047;border-color:#d5deeb;">Save to Wishlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section reveal">
+                    <div class="section-header">
+                        <div>
+                            <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">Compare Models</div>
+                            <h2 class="section-title">Choose your driving character</h2>
+                        </div>
+                        <p>
+                            A quick premium comparison view for buyers balancing technology, range, and performance.
+                        </p>
+                    </div>
+                    <div class="compare-grid" id="compareGrid"></div>
+                </section>
+
+                <section class="section reveal">
+                    <div class="ev-panel">
+                        <div class="ev-copy">
+                            <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">BMW Electric Future</div>
+                            <h2 class="section-title">Luxury EV mobility with confidence</h2>
+                            <p class="muted" style="margin-top:1rem;">
+                                Electric-driving content focused on charging confidence, sustainable premium mobility, battery care awareness, and real-world range guidance.
+                            </p>
+                            <div class="range-bar">
+                                <div class="range-fill"></div>
+                            </div>
+                            <p class="muted" style="margin-top:0.85rem;">Charging network reach, WLTP-style range storytelling, recuperation awareness, and premium EV ownership visualized in one section.</p>
+                        </div>
+                        <div class="ev-visual">
+                            <h3 class="section-title" style="font-size:2.2rem;color:white;">BMW Charging Network</h3>
+                            <p style="margin-top:0.8rem;color:#d5e5ff;line-height:1.8;">
+                                Smart route guidance, home charging support, connected range management, and battery-use best practices for daily electric luxury.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section reveal" id="ownership">
+                    <div class="section-header">
+                        <div>
+                            <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">Ownership Experience</div>
+                            <h2 class="section-title">Beyond the vehicle</h2>
+                        </div>
+                        <p>
+                            Services and digital experiences designed to make BMW ownership feel seamless, connected, and premium.
+                        </p>
+                    </div>
+                    <div class="ownership-grid" id="ownershipGrid"></div>
+                </section>
+
+                <section class="section reveal" id="booking">
+                    <div class="booking-card">
+                        <div class="section-header">
+                            <div>
+                                <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">Book Test Drive</div>
+                                <h2 class="section-title">Luxury drive appointment</h2>
+                            </div>
+                            <p>
+                                Choose a date, city, preferred model, and contact details. We save the booking in your browser for a premium preview flow.
+                            </p>
+                        </div>
+
+                        <form id="bookingForm">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="driveDate">Preferred date</label>
+                                    <input id="driveDate" type="date" required>
+                                </div>
+                                <div class="field">
+                                    <label for="driveCity">Location</label>
+                                    <select id="driveCity" required>
+                                        <option value="">Select city</option>
+                                        <option>Mumbai</option>
+                                        <option>Bengaluru</option>
+                                        <option>Delhi</option>
+                                        <option>Hyderabad</option>
+                                        <option>Chennai</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="driveModel">Preferred model</label>
+                                    <select id="driveModel" required></select>
+                                </div>
+                                <div class="field">
+                                    <label for="drivePhone">Contact number</label>
+                                    <input id="drivePhone" type="tel" placeholder="+91 98765 43210" required>
+                                </div>
+                                <div class="field">
+                                    <label for="driveName">Full name</label>
+                                    <input id="driveName" type="text" placeholder="Enter your name" required>
+                                </div>
+                                <div class="field">
+                                    <label for="driveEmail">Email</label>
+                                    <input id="driveEmail" type="email" placeholder="you@example.com" required>
+                                </div>
+                                <div class="field" style="grid-column:1 / -1;">
+                                    <label for="driveNotes">Additional preferences</label>
+                                    <textarea id="driveNotes" placeholder="Tell us your preferred experience, showroom, or financing interest."></textarea>
+                                </div>
+                            </div>
+                            <p class="form-help" id="bookingStatus" style="margin-top:1rem;">Your latest booking will be saved locally for this premium demo.</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" type="submit">Request Test Drive</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="section reveal">
+                    <div class="section-header">
+                        <div>
+                            <div class="eyebrow" style="color:#193c64;background:#e9f3ff;">Testimonials</div>
+                            <h2 class="section-title">Owners in motion</h2>
+                        </div>
+                        <p>
+                            Premium social proof cards designed like a refined automotive lifestyle editorial.
+                        </p>
+                    </div>
+                    <div class="testimonial-grid" id="testimonialGrid"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="page-shell">
+            <div class="footer-grid">
+                <div>
+                    <div class="brand">
+                        <div class="brand-mark" aria-hidden="true"></div>
+                        <div class="brand-copy">
+                            <strong>BMW India</strong>
+                            <span>Luxury digital showroom concept</span>
+                        </div>
+                    </div>
+                    <p style="margin-top:1rem;color:var(--muted);line-height:1.8;">
+                        Premium automotive storytelling, configurator motion, and browser-side customer journeys in one elegant front-end experience.
+                    </p>
+                    <div class="social-row">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li>About BMW</li>
+                        <li>Careers</li>
+                        <li>BMW Group</li>
+                        <li>Newsroom</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Explore</h4>
+                    <ul>
+                        <li>Dealer Locator</li>
+                        <li>BMW Financial Services</li>
+                        <li>ConnectedDrive</li>
+                        <li>Roadside Assistance</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li>Privacy Policy</li>
+                        <li>Terms & Conditions</li>
+                        <li>Cookie Settings</li>
+                        <li>Compliance</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Newsletter</h4>
+                    <p style="color:var(--muted);line-height:1.75;">Get premium BMW updates, launch alerts, and ownership news.</p>
+                    <div class="newsletter">
+                        <input id="newsletterEmail" type="email" placeholder="Enter your email">
+                        <button class="btn btn-primary" id="newsletterBtn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>BMW India luxury showroom concept front-end</span>
+                <span id="footerLocation">Dealer location not shared yet</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="overlay" id="carModalOverlay">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="carModalTitle">
+            <div class="modal-head">
+                <div>
+                    <p class="muted">Model preview</p>
+                    <h2 id="carModalTitle">BMW details</h2>
+                </div>
+                <button class="close-btn" data-close="carModalOverlay" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-gallery">
+                <div class="modal-hero-image">
+                    <img id="modalMainImage" src="" alt="Selected BMW">
+                </div>
+                <div class="thumb-grid" id="modalThumbs"></div>
+            </div>
+            <div class="modal-info">
+                <div class="detail-panel">
+                    <p class="muted" id="modalTagline"></p>
+                    <p id="modalDescription" style="margin-top:0.6rem; color:var(--ink-soft); line-height:1.75;"></p>
+                    <div class="detail-list">
+                        <div><span>Power</span><strong id="modalPower"></strong></div>
+                        <div><span>Range</span><strong id="modalRange"></strong></div>
+                        <div><span>0-100 km/h</span><strong id="modalAcceleration"></strong></div>
+                        <div><span>Category</span><strong id="modalCategory"></strong></div>
+                    </div>
+                </div>
+                <div class="detail-panel">
+                    <span class="muted">Starting at</span>
+                    <h3 class="pricing-value" id="modalPrice"></h3>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" id="modalCartBtn">Add to Cart</button>
+                        <button class="btn btn-dark" id="modalWishlistBtn">Add to Wishlist</button>
+                        <button class="btn btn-secondary" id="modalBuildBtn" style="color:#203047;border-color:#d5deeb;">Open Configurator</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="authOverlay">
+        <div class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <div class="modal-head">
+                <div>
+                    <p class="muted">Profile access</p>
+                    <h2 id="authTitle">Login / Register</h2>
+                </div>
+                <button class="close-btn" data-close="authOverlay" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="authForm">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" placeholder="Enter username" autocomplete="username">
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Enter password" autocomplete="current-password">
+                </div>
+                <p class="form-help">Register creates a browser-only premium profile. Login restores saved garage, cart, wishlist, booking details, and location.</p>
+                <div class="auth-actions">
+                    <button class="btn btn-primary" id="loginBtn" type="button">Login</button>
+                    <button class="btn btn-dark" id="registerBtn" type="button">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="overlay" id="drawerOverlay">
+        <div class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+            <div class="drawer-head">
+                <div>
+                    <p class="muted" id="drawerCaption">Saved items</p>
+                    <h3 id="drawerTitle">Your items</h3>
+                </div>
+                <button class="close-btn" data-close="drawerOverlay" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="drawer-list" id="drawerList"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <section class="bmw-chat-widget is-hidden" id="chatbot" aria-label="BMW chatbot">
+        <header class="bmw-chat-header">
+            <div class="bmw-chat-avatar" aria-hidden="true">M</div>
+            <div class="bmw-chat-title">
+                <strong>BMW Assistant</strong>
+                <span id="chatbotStatus">Online - ready to help</span>
+            </div>
+            <button class="bmw-chat-close" id="chatbotClose" type="button" aria-label="Close chatbot">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </header>
+        <div class="bmw-chat-messages" id="chatbotBody" role="log" aria-live="polite" aria-label="Chat messages"></div>
+        <div class="bmw-chat-suggestions" id="chatbotSuggestions" aria-label="Quick chatbot questions"></div>
+        <form class="bmw-chat-form" id="chatbotForm" autocomplete="off">
+            <input id="chatbotInput" type="text" maxlength="500" placeholder="Ask about BMW models..." aria-label="Type your message" required>
+            <button id="chatbotSend" type="submit" aria-label="Send message">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </section>
+    <button class="bmw-chat-toggle" id="chatbotToggle" aria-label="Open chatbot">
+        <i class="fa-solid fa-comment-dots"></i>
+    </button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const storageKeys = {
+                users: "bmwLuxuryUsers",
+                currentUser: "bmwLuxuryCurrentUser",
+                location: "bmwLuxuryLocation",
+                config: "bmwLuxuryConfig",
+                booking: "bmwLuxuryBooking",
+                theme: "bmwLuxuryTheme",
+                newsletter: "bmwLuxuryNewsletter"
+            };
+
+            const modelCategories = [
+                { id: "all", label: "All Models" },
+                { id: "electric", label: "Electric Vehicles" },
+                { id: "luxury", label: "Luxury Sedans" },
+                { id: "performance", label: "Performance M Models" },
+                { id: "suv", label: "SUVs" },
+                { id: "limited", label: "Limited Editions" }
+            ];
+
+            const cars = [
+                {
+                    id: "i7",
+                    name: "BMW i7",
+                    category: "electric",
+                    family: "Luxury Sedan",
+                    priceValue: 20500000,
+                    priceLabel: "Rs. 2.05 Cr",
+                    power: "544 hp",
+                    range: "625 km",
+                    acceleration: "4.7 sec",
+                    tagline: "Electrifying luxury with flagship composure.",
+                    description: "BMW's all-electric flagship limousine with lounge-first rear comfort, silent acceleration, and a dramatic digital presence.",
+                    badges: ["EV", "Sky Lounge", "Curved Display"],
+                    heroImage: "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "mineral-white", name: "Mineral White", hex: "#eef2f5", price: 0, image: "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "frozen-blue", name: "Frozen Blue", hex: "#87b5df", price: 240000, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "black-sapphire", name: "Black Sapphire", hex: "#121722", price: 210000, image: "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "executive-20", name: "20in Executive", price: 0 },
+                        { id: "signature-21", name: "21in Signature", price: 185000 },
+                        { id: "aero-21", name: "21in Aero", price: 215000 }
+                    ],
+                    interiors: [
+                        { id: "merino-beige", name: "Merino Beige", price: 0 },
+                        { id: "tartufo-brown", name: "Tartufo Brown", price: 145000 },
+                        { id: "night-blue", name: "Night Blue", price: 165000 }
+                    ]
+                },
+                {
+                    id: "ix",
+                    name: "BMW iX xDrive50",
+                    category: "electric",
+                    family: "Luxury SUV",
+                    priceValue: 12100000,
+                    priceLabel: "Rs. 1.21 Cr",
+                    power: "523 PS",
+                    range: "635 km",
+                    acceleration: "4.6 sec",
+                    tagline: "Progressive electric SUV design with xDrive50 long-range confidence.",
+                    description: "A complete premium iX xDrive50 configuration with a bold electric SUV stance, lounge-style cabin, and intelligent technology.",
+                    badges: ["523 PS", "635 km", "xDrive50"],
+                    heroImage: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "alpine-white", name: "Alpine White", hex: "#f4f2ea", price: 0, image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "black-sapphire", name: "Black Sapphire", hex: "#11161d", price: 0, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "storm-bay", name: "Storm Bay Metallic", hex: "#8ea9c4", price: 65000, image: "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "phytonic-blue", name: "Phytonic Blue Metallic", hex: "#1d4f91", price: 65000, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "tanzanite-blue", name: "Tanzanite Blue", hex: "#0d2948", price: 95000, image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "aero-21", name: "21in Aero", price: 0 },
+                        { id: "aero-bicolor-21", name: "21in Aero Bi-Color", price: 85000 },
+                        { id: "m-aero-22", name: "22in M Aero", price: 165000 },
+                        { id: "shadow-22", name: "22in Shadow Line", price: 195000 }
+                    ],
+                    interiors: [
+                        { id: "vernasca-black", name: "Vernasca Black", price: 0 },
+                        { id: "vernasca-cognac", name: "Vernasca Cognac", price: 95000 },
+                        { id: "merino-ivory", name: "Merino Ivory White", price: 225000 },
+                        { id: "merino-mocha", name: "Merino Mocha", price: 225000 },
+                        { id: "alcantara-anthracite", name: "Alcantara Anthracite", price: 185000 }
+                    ]
+                },
+                {
+                    id: "xm",
+                    name: "BMW XM",
+                    category: "limited",
+                    family: "M Hybrid SUV",
+                    priceValue: 25455000,
+                    priceLabel: "Rs. 2.5455 Cr",
+                    power: "653 hp",
+                    range: "Hybrid",
+                    acceleration: "4.3 sec",
+                    tagline: "A radical M halo SUV with sculptural presence.",
+                    description: "BMW XM delivers high-power plug-in hybrid performance and a dramatic luxury SUV identity that feels unapologetically bold.",
+                    badges: ["M Hybrid", "653 hp", "Limited"],
+                    heroImage: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "cape-green", name: "Cape Green", hex: "#304b3d", price: 0, image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "black-metallic", name: "Black Metallic", hex: "#171c25", price: 240000, image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "sao-paulo", name: "Sao Paulo Yellow", hex: "#d0c84a", price: 260000, image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "m-star-22", name: "22in M Star", price: 0 },
+                        { id: "jetblack-23", name: "23in Jet Black", price: 260000 },
+                        { id: "gold-edge-23", name: "23in Gold Edge", price: 320000 }
+                    ],
+                    interiors: [
+                        { id: "vintage-coffee", name: "Vintage Coffee", price: 0 },
+                        { id: "black-m", name: "Black M Merino", price: 170000 },
+                        { id: "silverstone", name: "Silverstone", price: 190000 }
+                    ]
+                },
+                {
+                    id: "x7",
+                    name: "BMW X7",
+                    category: "suv",
+                    family: "Luxury SUV",
+                    priceValue: 12700000,
+                    priceLabel: "Rs. 1.27 Cr",
+                    power: "381 hp",
+                    range: "Petrol / Diesel",
+                    acceleration: "5.8 sec",
+                    tagline: "Seven-seat grandeur with commanding luxury.",
+                    description: "The X7 combines large-format comfort, elevated seating, and confident road presence with executive-grade refinement.",
+                    badges: ["7 Seats", "Sky Lounge", "Air Suspension"],
+                    heroImage: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1583267746897-2cf415887172?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1498887960847-2a5e46312788?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "space-silver", name: "Space Silver", hex: "#c9cfd8", price: 0, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "sapphire-black", name: "Sapphire Black", hex: "#171d29", price: 160000, image: "https://images.unsplash.com/photo-1583267746897-2cf415887172?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "manhattan-green", name: "Manhattan Green", hex: "#556d54", price: 185000, image: "https://images.unsplash.com/photo-1498887960847-2a5e46312788?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "style-21", name: "21in Style", price: 0 },
+                        { id: "sport-22", name: "22in Sport", price: 210000 },
+                        { id: "m-star-23", name: "23in M Star", price: 260000 }
+                    ],
+                    interiors: [
+                        { id: "ivory-white", name: "Ivory White", price: 0 },
+                        { id: "coffee", name: "Coffee", price: 145000 },
+                        { id: "black", name: "Black Vernasca", price: 165000 }
+                    ]
+                },
+                {
+                    id: "m4",
+                    name: "BMW M4 Competition",
+                    category: "performance",
+                    family: "M Coupe",
+                    priceValue: 15300000,
+                    priceLabel: "Rs. 1.53 Cr",
+                    power: "530 hp",
+                    range: "Petrol",
+                    acceleration: "3.5 sec",
+                    tagline: "Track-born drama with everyday theatre.",
+                    description: "The M4 Competition is a sharp luxury performance coupe with aggressive stance, immense power, and unforgettable visual character.",
+                    badges: ["M xDrive", "530 hp", "Coupe"],
+                    heroImage: "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "alpine-white", name: "Alpine White", hex: "#eff3f7", price: 0, image: "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "toronto-red", name: "Toronto Red", hex: "#b91f32", price: 190000, image: "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "dravit-grey", name: "Dravit Grey", hex: "#6c706e", price: 220000, image: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "double-spoke-19", name: "19in Double-Spoke", price: 0 },
+                        { id: "m-track-20", name: "20in Track Pack", price: 205000 },
+                        { id: "carbon-edge", name: "20in Carbon Edge", price: 255000 }
+                    ],
+                    interiors: [
+                        { id: "black-bucket", name: "Black Bucket Seats", price: 0 },
+                        { id: "fiona-red", name: "Fiona Red", price: 165000 },
+                        { id: "silverstone", name: "Silverstone", price: 175000 }
+                    ]
+                },
+                {
+                    id: "m5",
+                    name: "BMW M5",
+                    category: "performance",
+                    family: "M Sedan",
+                    priceValue: 19900000,
+                    priceLabel: "Rs. 1.99 Cr",
+                    power: "717 hp",
+                    range: "Hybrid",
+                    acceleration: "3.5 sec",
+                    tagline: "Executive presence. M power. Electrified punch.",
+                    description: "The latest M5 fuses super-sedan performance with modern electrified strength and long-distance comfort.",
+                    badges: ["717 hp", "Plug-in Hybrid", "Executive M"],
+                    heroImage: "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "frozen-grey", name: "Frozen Grey", hex: "#8a8d94", price: 0, image: "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "aventurine-red", name: "Aventurine Red", hex: "#7a202b", price: 230000, image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "black-sapphire", name: "Black Sapphire", hex: "#121722", price: 250000, image: "https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "m-20", name: "20in M", price: 0 },
+                        { id: "m-21", name: "21in M Performance", price: 220000 },
+                        { id: "graphite-21", name: "21in Graphite", price: 255000 }
+                    ],
+                    interiors: [
+                        { id: "black-merino", name: "Black Merino", price: 0 },
+                        { id: "kyalami-orange", name: "Kyalami Orange", price: 180000 },
+                        { id: "white-silverstone", name: "White Silverstone", price: 185000 }
+                    ]
+                },
+                {
+                    id: "series7",
+                    name: "BMW 7 Series",
+                    category: "luxury",
+                    family: "Luxury Sedan",
+                    priceValue: 18100000,
+                    priceLabel: "Rs. 1.81 Cr",
+                    power: "536 hp",
+                    range: "Petrol / Diesel",
+                    acceleration: "4.2 sec",
+                    tagline: "Flagship comfort with iconic BMW gravitas.",
+                    description: "The 7 Series is all about rear-seat occasion, precise engineering, and ultra-premium digital presentation.",
+                    badges: ["Rear Executive", "Curved Display", "Luxury"],
+                    heroImage: "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "oxide-grey", name: "Oxide Grey", hex: "#8a8d94", price: 0, image: "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "aventurine-red", name: "Aventurine Red", hex: "#7a202b", price: 220000, image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "black-sapphire", name: "Black Sapphire", hex: "#121722", price: 210000, image: "https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "executive-20", name: "20in Executive", price: 0 },
+                        { id: "signature-21", name: "21in Signature", price: 195000 },
+                        { id: "aero-21", name: "21in Aero", price: 215000 }
+                    ],
+                    interiors: [
+                        { id: "smoke-white", name: "Smoke White", price: 0 },
+                        { id: "mocha-merino", name: "Mocha Merino", price: 145000 },
+                        { id: "night-blue", name: "Night Blue", price: 165000 }
+                    ]
+                },
+                {
+                    id: "i4",
+                    name: "BMW i4",
+                    category: "electric",
+                    family: "Electric Gran Coupe",
+                    priceValue: 7250000,
+                    priceLabel: "Rs. 72.50 Lakh",
+                    power: "335 hp",
+                    range: "590 km",
+                    acceleration: "5.7 sec",
+                    tagline: "Electric gran coupe style with everyday pace.",
+                    description: "The i4 blends elegant liftback design, instant EV performance, and a technology-rich cockpit for modern luxury drivers.",
+                    badges: ["590 km", "Gran Coupe", "Fast Charge"],
+                    heroImage: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "brooklyn-grey", name: "Brooklyn Grey", hex: "#8f959a", price: 0, image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "sunset-orange", name: "Sunset Orange", hex: "#da682c", price: 180000, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "portimao-blue", name: "Portimao Blue", hex: "#2e63c3", price: 195000, image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "aero-18", name: "18in Aero", price: 0 },
+                        { id: "m-19", name: "19in M", price: 165000 },
+                        { id: "performance-20", name: "20in Performance", price: 225000 }
+                    ],
+                    interiors: [
+                        { id: "black-sensa", name: "Black Sensatec", price: 0 },
+                        { id: "oyster", name: "Oyster", price: 135000 },
+                        { id: "mocha", name: "Mocha", price: 145000 }
+                    ]
+                },
+                {
+                    id: "i5",
+                    name: "BMW i5",
+                    category: "electric",
+                    family: "Electric Executive Sedan",
+                    priceValue: 11950000,
+                    priceLabel: "Rs. 1.195 Cr",
+                    power: "601 hp",
+                    range: "Electric",
+                    acceleration: "3.8 sec",
+                    tagline: "Electric executive pace with M-inspired presence.",
+                    description: "The i5 adds electric executive performance, modern luxury, and strong digital character.",
+                    badges: ["Electric", "Executive", "M Model"],
+                    heroImage: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "frozen-grey", name: "Frozen Grey", hex: "#979da4", price: 0, image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "deep-black", name: "Deep Black", hex: "#121722", price: 210000, image: "https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "arctic-white", name: "Arctic White", hex: "#eef3f7", price: 160000, image: "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "m-aero-20", name: "20in M Aero", price: 0 },
+                        { id: "signature-21", name: "21in Signature", price: 195000 },
+                        { id: "performance-21", name: "21in Performance", price: 235000 }
+                    ],
+                    interiors: [
+                        { id: "black-merino", name: "Black Merino", price: 0 },
+                        { id: "smoke-white", name: "Smoke White", price: 145000 },
+                        { id: "espresso", name: "Espresso Brown", price: 165000 }
+                    ]
+                },
+                {
+                    id: "ix1lwb",
+                    name: "BMW iX1 LWB",
+                    category: "electric",
+                    family: "Electric SUV",
+                    priceValue: 5140000,
+                    priceLabel: "Rs. 51.4 Lakh",
+                    power: "Electric",
+                    range: "MIDC 15.5 kWh/100km reference",
+                    acceleration: "Urban EV",
+                    tagline: "Long-wheelbase electric mobility for modern urban luxury.",
+                    description: "The iX1 LWB extends electric accessibility with premium SUV proportions and practical rear space.",
+                    badges: ["LWB", "Electric", "Urban Luxury"],
+                    heroImage: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1583267746897-2cf415887172?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1498887960847-2a5e46312788?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "space-silver", name: "Space Silver", hex: "#c9cfd8", price: 0, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "midnight-black", name: "Midnight Black", hex: "#171d29", price: 125000, image: "https://images.unsplash.com/photo-1583267746897-2cf415887172?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "cape-green", name: "Cape Green", hex: "#536f61", price: 145000, image: "https://images.unsplash.com/photo-1498887960847-2a5e46312788?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "y-spoke-18", name: "18in Y-Spoke", price: 0 },
+                        { id: "style-19", name: "19in Style", price: 115000 },
+                        { id: "sport-20", name: "20in Sport", price: 165000 }
+                    ],
+                    interiors: [
+                        { id: "black-sensa", name: "Black Sensatec", price: 0 },
+                        { id: "oyster", name: "Oyster", price: 95000 },
+                        { id: "mocha", name: "Mocha", price: 110000 }
+                    ]
+                },
+                {
+                    id: "x5",
+                    name: "BMW X5",
+                    category: "suv",
+                    family: "Performance SUV",
+                    priceValue: 9600000,
+                    priceLabel: "Rs. 96.00 Lakh",
+                    power: "375 hp",
+                    range: "Petrol / Diesel",
+                    acceleration: "5.4 sec",
+                    tagline: "Powerful utility with unmistakable luxury confidence.",
+                    description: "BMW X5 brings versatile SUV capability, commanding design, and refined interior execution for premium long-distance travel.",
+                    badges: ["Luxury SUV", "375 hp", "M Sport"],
+                    heroImage: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    colors: [
+                        { id: "mineral-white", name: "Mineral White", hex: "#e9edf2", price: 0, image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "carbon-black", name: "Carbon Black", hex: "#1d2430", price: 175000, image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80" },
+                        { id: "phytonic-blue", name: "Phytonic Blue", hex: "#2150a8", price: 195000, image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80" }
+                    ],
+                    wheels: [
+                        { id: "m-star-20", name: "20in M Star", price: 0 },
+                        { id: "v-spoke-21", name: "21in V-Spoke", price: 180000 },
+                        { id: "jetblack-22", name: "22in Jet Black", price: 240000 }
+                    ],
+                    interiors: [
+                        { id: "coffee", name: "Coffee", price: 0 },
+                        { id: "ivory", name: "Ivory White", price: 145000 },
+                        { id: "black", name: "Black Vernasca", price: 155000 }
+                    ]
+                }
+            ];
+
+            const technologyFeatures = [
+                { icon: "fa-display", title: "BMW Curved Display", copy: "A cinematic horizontal visual layer unifying driver information and infotainment." },
+                { icon: "fa-microchip", title: "BMW Operating System 8.5", copy: "Faster visual logic, premium interface design, and refined connected control." },
+                { icon: "fa-robot", title: "Intelligent Personal Assistant", copy: "A conversational BMW companion that keeps the cockpit feeling modern and effortless." },
+                { icon: "fa-music", title: "Harman Kardon Audio", copy: "Immersive acoustics engineered for a luxury cabin atmosphere." },
+                { icon: "fa-lightbulb", title: "Ambient Lighting", copy: "Mood-driven illumination flowing across the interior environment." },
+                { icon: "fa-cloud-moon", title: "Panoramic Sky Lounge", copy: "A spacious roof treatment with visual sophistication and nighttime drama." },
+                { icon: "fa-hand-sparkles", title: "Gesture Control", copy: "Elegant no-touch inputs that reinforce the futuristic premium feel." },
+                { icon: "fa-road", title: "Driving Assistance", copy: "Adaptive safety and intelligent guidance built for modern journeys." }
+            ];
+
+            const ownershipItems = [
+                { icon: "fa-wallet", title: "BMW Financial Services", copy: "Premium financing journeys with elegant ownership flexibility." },
+                { icon: "fa-screwdriver-wrench", title: "BMW Service Packages", copy: "Predictable service care designed for peace of mind and convenience." },
+                { icon: "fa-satellite-dish", title: "BMW ConnectedDrive", copy: "Connected functions that keep the BMW experience digital and responsive." },
+                { icon: "fa-truck-medical", title: "Roadside Assistance", copy: "Support designed to keep luxury mobility moving with confidence." },
+                { icon: "fa-key", title: "BMW Digital Key Plus", copy: "Smart access control for a frictionless modern arrival experience." }
+            ];
+
+            const testimonials = [
+                {
+                    quote: "The configurator feels like a premium studio. I could shortlist the i7 and save everything without losing my flow.",
+                    name: "Riya Kapoor",
+                    role: "Mumbai",
+                    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+                },
+                {
+                    quote: "The digital presentation of the M cars feels sharp and expensive. The comparison and test drive flow is especially smooth.",
+                    name: "Arjun Menon",
+                    role: "Bengaluru",
+                    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+                },
+                {
+                    quote: "The site finally feels like a true BMW showroom, not just a catalog. The premium motion and cards make a huge difference.",
+                    name: "Neha Shah",
+                    role: "Delhi",
+                    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80"
+                }
+            ];
+
+            const elements = {
+                loadingScreen: document.getElementById("loadingScreen"),
+                welcomeLabel: document.getElementById("welcomeLabel"),
+                summaryUser: document.getElementById("summaryUser"),
+                summaryGarage: document.getElementById("summaryGarage"),
+                summaryLocation: document.getElementById("summaryLocation"),
+                footerLocation: document.getElementById("footerLocation"),
+                themeToggle: document.getElementById("themeToggle"),
+                authTrigger: document.getElementById("authTrigger"),
+                cartTrigger: document.getElementById("cartTrigger"),
+                wishlistTrigger: document.getElementById("wishlistTrigger"),
+                locationTrigger: document.getElementById("locationTrigger"),
+                logoutTrigger: document.getElementById("logoutTrigger"),
+                cartCount: document.getElementById("cartCount"),
+                wishlistCount: document.getElementById("wishlistCount"),
+                discoverHeroBtn: document.getElementById("discoverHeroBtn"),
+                buildHeroBtn: document.getElementById("buildHeroBtn"),
+                bookHeroBtn: document.getElementById("bookHeroBtn"),
+                modelFilter: document.getElementById("modelFilter"),
+                modelGrid: document.getElementById("modelGrid"),
+                featureGrid: document.getElementById("featureGrid"),
+                ownershipGrid: document.getElementById("ownershipGrid"),
+                testimonialGrid: document.getElementById("testimonialGrid"),
+                compareGrid: document.getElementById("compareGrid"),
+                configImage: document.getElementById("configImage"),
+                leftLightGlow: document.getElementById("leftLightGlow"),
+                rightLightGlow: document.getElementById("rightLightGlow"),
+                configModelLabel: document.getElementById("configModelLabel"),
+                configColorLabel: document.getElementById("configColorLabel"),
+                configWheelLabel: document.getElementById("configWheelLabel"),
+                configInteriorLabel: document.getElementById("configInteriorLabel"),
+                configLightLabel: document.getElementById("configLightLabel"),
+                configModeLabel: document.getElementById("configModeLabel"),
+                configModelName: document.getElementById("configModelName"),
+                configTagline: document.getElementById("configTagline"),
+                configPrice: document.getElementById("configPrice"),
+                configPriceNote: document.getElementById("configPriceNote"),
+                configModelOptions: document.getElementById("configModelOptions"),
+                configColorOptions: document.getElementById("configColorOptions"),
+                configWheelOptions: document.getElementById("configWheelOptions"),
+                configInteriorOptions: document.getElementById("configInteriorOptions"),
+                configLightOptions: document.getElementById("configLightOptions"),
+                configModeOptions: document.getElementById("configModeOptions"),
+                configSummary: document.getElementById("configSummary"),
+                saveBuildBtn: document.getElementById("saveBuildBtn"),
+                addConfigCartBtn: document.getElementById("addConfigCartBtn"),
+                addConfigWishlistBtn: document.getElementById("addConfigWishlistBtn"),
+                bookingForm: document.getElementById("bookingForm"),
+                driveDate: document.getElementById("driveDate"),
+                driveCity: document.getElementById("driveCity"),
+                driveModel: document.getElementById("driveModel"),
+                drivePhone: document.getElementById("drivePhone"),
+                driveName: document.getElementById("driveName"),
+                driveEmail: document.getElementById("driveEmail"),
+                driveNotes: document.getElementById("driveNotes"),
+                bookingStatus: document.getElementById("bookingStatus"),
+                newsletterEmail: document.getElementById("newsletterEmail"),
+                newsletterBtn: document.getElementById("newsletterBtn"),
+                authOverlay: document.getElementById("authOverlay"),
+                drawerOverlay: document.getElementById("drawerOverlay"),
+                carModalOverlay: document.getElementById("carModalOverlay"),
+                authForm: document.getElementById("authForm"),
+                username: document.getElementById("username"),
+                password: document.getElementById("password"),
+                loginBtn: document.getElementById("loginBtn"),
+                registerBtn: document.getElementById("registerBtn"),
+                drawerTitle: document.getElementById("drawerTitle"),
+                drawerCaption: document.getElementById("drawerCaption"),
+                drawerList: document.getElementById("drawerList"),
+                carModalTitle: document.getElementById("carModalTitle"),
+                modalTagline: document.getElementById("modalTagline"),
+                modalDescription: document.getElementById("modalDescription"),
+                modalMainImage: document.getElementById("modalMainImage"),
+                modalThumbs: document.getElementById("modalThumbs"),
+                modalPower: document.getElementById("modalPower"),
+                modalRange: document.getElementById("modalRange"),
+                modalAcceleration: document.getElementById("modalAcceleration"),
+                modalCategory: document.getElementById("modalCategory"),
+                modalPrice: document.getElementById("modalPrice"),
+                modalCartBtn: document.getElementById("modalCartBtn"),
+                modalWishlistBtn: document.getElementById("modalWishlistBtn"),
+                modalBuildBtn: document.getElementById("modalBuildBtn"),
+                toastContainer: document.getElementById("toastContainer"),
+                chatbot: document.getElementById("chatbot"),
+                chatbotBody: document.getElementById("chatbotBody"),
+                chatbotToggle: document.getElementById("chatbotToggle"),
+                chatbotClose: document.getElementById("chatbotClose"),
+                chatbotForm: document.getElementById("chatbotForm"),
+                chatbotInput: document.getElementById("chatbotInput"),
+                chatbotSend: document.getElementById("chatbotSend"),
+                chatbotSuggestions: document.getElementById("chatbotSuggestions"),
+                chatbotStatus: document.getElementById("chatbotStatus")
+            };
+
+            function readStorage(key, fallback) {
+                try {
+                    const value = localStorage.getItem(key);
+                    return value ? JSON.parse(value) : fallback;
+                } catch (error) {
+                    return fallback;
+                }
+            }
+
+            function writeStorage(key, value) {
+                localStorage.setItem(key, JSON.stringify(value));
+            }
+
+            function formatCurrency(value) {
+                return new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    maximumFractionDigits: 0
+                }).format(value);
+            }
+
+            function getCarById(carId) {
+                return cars.find((car) => car.id === carId);
+            }
+
+            function getDefaultConfig(carId) {
+                const car = getCarById(carId);
+                return {
+                    carId,
+                    colorId: car.colors[0].id,
+                    wheelId: car.wheels[0].id,
+                    interiorId: car.interiors[0].id,
+                    lightMode: "off",
+                    previewMode: "day"
+                };
+            }
+
+            function normalizeGarageItem(item) {
+                if (!item || typeof item !== "object" || !item.carId || !getCarById(item.carId)) {
+                    return null;
+                }
+
+                const fallback = getDefaultConfig(item.carId);
+                return {
+                    carId: item.carId,
+                    colorId: item.colorId || fallback.colorId,
+                    wheelId: item.wheelId || fallback.wheelId,
+                    interiorId: item.interiorId || fallback.interiorId,
+                    lightMode: item.lightMode || fallback.lightMode,
+                    previewMode: item.previewMode || fallback.previewMode
+                };
+            }
+
+            function normalizeUser(user) {
+                if (!user || typeof user !== "object") {
+                    return null;
+                }
+
+                const normalizeCollection = (collection) => {
+                    if (!Array.isArray(collection)) {
+                        return [];
+                    }
+
+                    return collection.map(normalizeGarageItem).filter(Boolean);
+                };
+
+                return {
+                    username: user.username || "",
+                    password: user.password || "",
+                    cart: normalizeCollection(user.cart),
+                    wishlist: normalizeCollection(user.wishlist)
+                };
+            }
+
+            let users = readStorage(storageKeys.users, []).map(normalizeUser).filter(Boolean);
+            let currentUser = normalizeUser(readStorage(storageKeys.currentUser, null));
+            let savedLocation = readStorage(storageKeys.location, null);
+            let currentConfig = normalizeGarageItem(readStorage(storageKeys.config, getDefaultConfig("ix"))) || getDefaultConfig("ix");
+            if (currentConfig.carId !== "ix") {
+                currentConfig = getDefaultConfig("ix");
+            }
+            let savedBooking = readStorage(storageKeys.booking, null);
+            let activeCategory = "all";
+            let modalCarId = cars[0].id;
+            const lightPresets = {
+                off: null,
+                ice: "#9ed8ff",
+                warm: "#ffe6b7",
+                blue: "#63c7ff",
+                amber: "#ffb557"
+            };
+
+            function showToast(message, type = "success") {
+                const toast = document.createElement("div");
+                toast.className = `toast-message ${type}`;
+                toast.textContent = message;
+                elements.toastContainer.appendChild(toast);
+                window.setTimeout(() => toast.remove(), 2800);
+            }
+
+            function openOverlay(overlay) {
+                overlay.classList.add("active");
+            }
+
+            function closeOverlay(overlay) {
+                overlay.classList.remove("active");
+            }
+
+            function syncUsers() {
+                writeStorage(storageKeys.users, users);
+                if (currentUser) {
+                    writeStorage(storageKeys.currentUser, currentUser);
+                } else {
+                    localStorage.removeItem(storageKeys.currentUser);
+                }
+            }
+
+            function updateUserCollections() {
+                if (!currentUser) {
+                    return;
+                }
+
+                const matchIndex = users.findIndex((user) => user.username === currentUser.username);
+                if (matchIndex >= 0) {
+                    users[matchIndex] = currentUser;
+                } else {
+                    users.push(currentUser);
+                }
+                syncUsers();
+            }
+
+            function getCollectionCounts() {
+                return {
+                    cart: currentUser ? currentUser.cart.length : 0,
+                    wishlist: currentUser ? currentUser.wishlist.length : 0
+                };
+            }
+
+            function requireLogin() {
+                if (currentUser) {
+                    return true;
+                }
+                showToast("Login first to save your BMW journey.", "error");
+                openOverlay(elements.authOverlay);
+                return false;
+            }
+
+            function configEquals(a, b) {
+                return a.carId === b.carId &&
+                    a.colorId === b.colorId &&
+                    a.wheelId === b.wheelId &&
+                    a.interiorId === b.interiorId &&
+                    a.lightMode === b.lightMode &&
+                    a.previewMode === b.previewMode;
+            }
+
+            function getCurrentCar() {
+                return getCarById(currentConfig.carId);
+            }
+
+            function getSelectedColor(car, colorId) {
+                return car.colors.find((item) => item.id === colorId) || car.colors[0];
+            }
+
+            function getSelectedWheel(car, wheelId) {
+                return car.wheels.find((item) => item.id === wheelId) || car.wheels[0];
+            }
+
+            function getSelectedInterior(car, interiorId) {
+                return car.interiors.find((item) => item.id === interiorId) || car.interiors[0];
+            }
+
+            function calculateConfigPrice(config) {
+                const car = getCarById(config.carId);
+                const color = getSelectedColor(car, config.colorId);
+                const wheel = getSelectedWheel(car, config.wheelId);
+                const interior = getSelectedInterior(car, config.interiorId);
+                const lightPremium = config.lightMode === "off" ? 0 : 35000;
+                const nightPremium = config.previewMode === "night" ? 15000 : 0;
+                return car.priceValue + color.price + wheel.price + interior.price + lightPremium + nightPremium;
+            }
+
+            function updateTheme(mode) {
+                const light = mode === "light";
+                document.body.classList.toggle("light-mode", light);
+                elements.themeToggle.textContent = light ? "Luxury Dark" : "Luxury Light";
+                elements.themeToggle.classList.toggle("active", light);
+                writeStorage(storageKeys.theme, mode);
+            }
+
+            function renderModelFilter() {
+                elements.modelFilter.innerHTML = modelCategories.map((category) => `
+                    <button class="filter-chip ${category.id === activeCategory ? "active" : ""}" data-filter="${category.id}">${category.label}</button>
+                `).join("");
+            }
+
+            function renderModels() {
+                const filtered = cars.filter((car) => activeCategory === "all" || car.category === activeCategory);
+                elements.modelGrid.innerHTML = filtered.map((car) => `
+                    <article class="model-card reveal">
+                        <div class="model-visual">
+                            <span class="model-label">${car.family}</span>
+                            <img src="${car.heroImage}" alt="${car.name}" loading="lazy">
+                        </div>
+                        <div class="model-body">
+                            <div class="model-topline">
+                                <div>
+                                    <h3>${car.name}</h3>
+                                    <p class="card-copy">${car.tagline}</p>
+                                </div>
+                                <span class="pricing-value">${car.priceLabel}</span>
+                            </div>
+                            <div class="spec-badges">
+                                ${car.badges.map((badge) => `<span>${badge}</span>`).join("")}
+                            </div>
+                            <div class="model-stats">
+                                <span class="muted">${car.power}</span>
+                                <span class="muted">${car.range}</span>
+                                <span class="muted">${car.acceleration}</span>
+                            </div>
+                            <p class="card-copy">${car.description}</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" data-model-action="explore" data-car-id="${car.id}">Explore Model</button>
+                                <button class="btn btn-dark" data-model-action="build" data-car-id="${car.id}">Build This BMW</button>
+                            </div>
+                        </div>
+                    </article>
+                `).join("");
+            }
+
+            function renderTechnologyFeatures() {
+                elements.featureGrid.innerHTML = technologyFeatures.map((feature) => `
+                    <article class="feature-icon-card reveal">
+                        <div class="feature-icon"><i class="fa-solid ${feature.icon}"></i></div>
+                        <h3>${feature.title}</h3>
+                        <p class="card-copy">${feature.copy}</p>
+                    </article>
+                `).join("");
+            }
+
+            function renderOwnership() {
+                elements.ownershipGrid.innerHTML = ownershipItems.map((item) => `
+                    <article class="ownership-card reveal">
+                        <div class="feature-icon"><i class="fa-solid ${item.icon}"></i></div>
+                        <h3>${item.title}</h3>
+                        <p class="card-copy">${item.copy}</p>
+                    </article>
+                `).join("");
+            }
+
+            function renderTestimonials() {
+                elements.testimonialGrid.innerHTML = testimonials.map((item) => `
+                    <article class="quote-card reveal">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="card-copy">${item.quote}</p>
+                        <div class="quote-user">
+                            <img class="quote-avatar" src="${item.avatar}" alt="${item.name}" loading="lazy">
+                            <div>
+                                <strong>${item.name}</strong>
+                                <div class="muted">${item.role}</div>
+                            </div>
+                        </div>
+                    </article>
+                `).join("");
+            }
+
+            function renderCompare() {
+                const compareCars = [getCarById("i7"), getCarById("m5")];
+                elements.compareGrid.innerHTML = compareCars.map((car) => `
+                    <article class="compare-card reveal">
+                        <h3>${car.name}</h3>
+                        <p class="card-copy">${car.tagline}</p>
+                        <div class="compare-row"><span class="muted">Starting at</span><strong>${car.priceLabel}</strong></div>
+                        <div class="compare-row"><span class="muted">Power</span><strong>${car.power}</strong></div>
+                        <div class="compare-row"><span class="muted">Range</span><strong>${car.range}</strong></div>
+                        <div class="compare-row"><span class="muted">Acceleration</span><strong>${car.acceleration}</strong></div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary" data-model-action="build" data-car-id="${car.id}">Configure</button>
+                        </div>
+                    </article>
+                `).join("");
+            }
+
+            function populateBookingModels() {
+                elements.driveModel.innerHTML = cars.map((car) => `<option value="${car.id}">${car.name}</option>`).join("");
+            }
+
+            function updateConfigPreview() {
+                const car = getCurrentCar();
+                const color = getSelectedColor(car, currentConfig.colorId);
+                const wheel = getSelectedWheel(car, currentConfig.wheelId);
+                const interior = getSelectedInterior(car, currentConfig.interiorId);
+                const lightColor = lightPresets[currentConfig.lightMode];
+                const price = calculateConfigPrice(currentConfig);
+
+                elements.configImage.src = color.image || car.heroImage;
+                elements.configImage.alt = `${car.name} in ${color.name}`;
+                elements.configImage.style.filter = currentConfig.previewMode === "night" ? "brightness(0.74) saturate(0.95)" : "none";
+                elements.configModelLabel.textContent = `Model: ${car.name}`;
+                elements.configColorLabel.textContent = `Color: ${color.name}`;
+                elements.configWheelLabel.textContent = `Wheels: ${wheel.name}`;
+                elements.configInteriorLabel.textContent = `Interior: ${interior.name}`;
+                elements.configLightLabel.textContent = currentConfig.lightMode === "off" ? "Lights: Off" : `Lights: ${currentConfig.lightMode}`;
+                elements.configModeLabel.textContent = `Preview: ${currentConfig.previewMode}`;
+                elements.configModelName.textContent = car.name;
+                elements.configTagline.textContent = car.tagline;
+                elements.configPrice.textContent = formatCurrency(price);
+                elements.configPriceNote.textContent = `Base ${car.priceLabel} plus selected design, interior, and lighting packages.`;
+                elements.configSummary.innerHTML = `
+                    <strong style="display:block;color:var(--ink);margin-bottom:0.35rem;">Saved BMW configuration</strong>
+                    ${car.name} in ${color.name} with ${wheel.name}, ${interior.name} interior, headlights ${currentConfig.lightMode === "off" ? "off" : currentConfig.lightMode}, and ${currentConfig.previewMode} preview mode.
+                `;
+
+                [elements.leftLightGlow, elements.rightLightGlow].forEach((light) => {
+                    const active = Boolean(lightColor);
+                    light.classList.toggle("active", active);
+                    if (active) {
+                        light.style.background = lightColor;
+                        light.style.boxShadow = `0 0 26px 10px ${lightColor}`;
+                    } else {
+                        light.style.background = "transparent";
+                        light.style.boxShadow = "none";
+                    }
+                });
+
+                elements.configModelOptions.innerHTML = `
+                    <button class="selection-chip active" data-config-type="model" data-value="ix">${car.name}</button>
+                `;
+
+                elements.configColorOptions.innerHTML = car.colors.map((item) => `
+                    <button class="color-chip ${item.id === currentConfig.colorId ? "active" : ""}" data-config-type="color" data-value="${item.id}">
+                        <span class="swatch" style="background:${item.hex};"></span>
+                        <span>${item.name}</span>
+                    </button>
+                `).join("");
+
+                elements.configWheelOptions.innerHTML = car.wheels.map((item) => `
+                    <button class="wheel-chip ${item.id === currentConfig.wheelId ? "active" : ""}" data-config-type="wheel" data-value="${item.id}">${item.name}</button>
+                `).join("");
+
+                elements.configInteriorOptions.innerHTML = car.interiors.map((item) => `
+                    <button class="interior-chip ${item.id === currentConfig.interiorId ? "active" : ""}" data-config-type="interior" data-value="${item.id}">${item.name}</button>
+                `).join("");
+
+                const lightOptions = [
+                    { id: "off", label: "Lights Off", color: "#ced7e6" },
+                    { id: "ice", label: "Ice Blue", color: "#9ed8ff" },
+                    { id: "warm", label: "Warm White", color: "#ffe6b7" },
+                    { id: "blue", label: "Neon Blue", color: "#63c7ff" },
+                    { id: "amber", label: "Amber", color: "#ffb557" }
+                ];
+
+                elements.configLightOptions.innerHTML = lightOptions.map((item) => `
+                    <button class="light-chip ${item.id === currentConfig.lightMode ? "active" : ""}" data-config-type="light" data-value="${item.id}">
+                        <span class="swatch" style="background:${item.color};"></span>
+                        <span>${item.label}</span>
+                    </button>
+                `).join("");
+
+                ["day", "night"].forEach((mode) => {
+                    // noop
+                });
+
+                elements.configModeOptions.innerHTML = `
+                    <button class="mode-chip ${currentConfig.previewMode === "day" ? "active" : ""}" data-config-type="mode" data-value="day">Day Mode</button>
+                    <button class="mode-chip ${currentConfig.previewMode === "night" ? "active" : ""}" data-config-type="mode" data-value="night">Night Mode</button>
+                `;
+
+                writeStorage(storageKeys.config, currentConfig);
+            }
+
+            function updateUiState() {
+                const counts = getCollectionCounts();
+                elements.welcomeLabel.textContent = currentUser ? `Signed in as ${currentUser.username}` : "Guest mode";
+                elements.summaryUser.textContent = currentUser ? currentUser.username : "No user signed in";
+                elements.cartCount.textContent = counts.cart;
+                elements.wishlistCount.textContent = counts.wishlist;
+                elements.logoutTrigger.classList.toggle("hidden", !currentUser);
+
+                if (!savedLocation) {
+                    elements.summaryLocation.textContent = "Not requested";
+                    elements.footerLocation.textContent = "Dealer location not shared yet";
+                } else {
+                    const locationLabel = `${savedLocation.latitude}, ${savedLocation.longitude}`;
+                    elements.summaryLocation.textContent = locationLabel;
+                    elements.footerLocation.textContent = `Nearest dealer search unlocked: ${locationLabel}`;
+                }
+            }
+
+            function openModelModal(carId) {
+                const car = getCarById(carId);
+                modalCarId = carId;
+                elements.carModalTitle.textContent = car.name;
+                elements.modalTagline.textContent = car.tagline;
+                elements.modalDescription.textContent = car.description;
+                elements.modalPower.textContent = car.power;
+                elements.modalRange.textContent = car.range;
+                elements.modalAcceleration.textContent = car.acceleration;
+                elements.modalCategory.textContent = car.family;
+                elements.modalPrice.textContent = car.priceLabel;
+                elements.modalMainImage.src = car.gallery[0];
+                elements.modalThumbs.innerHTML = car.gallery.map((image, index) => `
+                    <img src="${image}" alt="${car.name} view ${index + 1}" data-image="${image}" loading="lazy">
+                `).join("");
+                openOverlay(elements.carModalOverlay);
+            }
+
+            function jumpToConfigurator() {
+                currentConfig = getDefaultConfig("ix");
+                updateConfigPreview();
+                document.getElementById("configurator").scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            function addToCollection(collectionName, config) {
+                if (!requireLogin()) {
+                    return;
+                }
+
+                const normalized = normalizeGarageItem(config);
+                const exists = currentUser[collectionName].some((item) => configEquals(item, normalized));
+                if (exists) {
+                    showToast("This BMW build is already saved there.", "error");
+                    return;
+                }
+
+                currentUser[collectionName].push(normalized);
+                updateUserCollections();
+                updateUiState();
+                showToast(`${getCarById(normalized.carId).name} saved to ${collectionName}.`);
+            }
+
+            function renderDrawer(collectionName) {
+                if (!requireLogin()) {
+                    return;
+                }
+
+                const titleMap = {
+                    cart: "Your Cart",
+                    wishlist: "Your Wishlist"
+                };
+
+                const items = currentUser[collectionName].map((config) => {
+                    const car = getCarById(config.carId);
+                    if (!car) {
+                        return null;
+                    }
+                    return {
+                        config,
+                        car,
+                        color: getSelectedColor(car, config.colorId),
+                        wheel: getSelectedWheel(car, config.wheelId),
+                        interior: getSelectedInterior(car, config.interiorId),
+                        price: calculateConfigPrice(config)
+                    };
+                }).filter(Boolean);
+
+                elements.drawerTitle.textContent = titleMap[collectionName];
+                elements.drawerCaption.textContent = `${items.length} premium build${items.length === 1 ? "" : "s"}`;
+
+                if (items.length === 0) {
+                    elements.drawerList.innerHTML = `
+                        <div class="drawer-item">
+                            <div>
+                                <h4>No BMW build saved yet</h4>
+                                <p class="muted">Explore the configurator or model cards and save a build to continue your showroom journey.</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    elements.drawerList.innerHTML = items.map(({ config, car, color, wheel, interior, price }) => `
+                        <div class="drawer-item">
+                            <div>
+                                <h4>${car.name}</h4>
+                                <p class="muted">${car.family} - ${formatCurrency(price)}</p>
+                                <p class="muted">${color.name} / ${wheel.name} / ${interior.name} / ${config.previewMode} mode</p>
+                            </div>
+                            <div class="drawer-actions">
+                                ${collectionName === "cart" ? `
+                                    <button class="drawer-primary" data-buy="${collectionName}" data-config='${JSON.stringify(config)}'>Buy</button>
+                                ` : `
+                                    <button class="drawer-primary" data-move-cart="wishlist" data-config='${JSON.stringify(config)}'>Add to Cart</button>
+                                    <button class="drawer-secondary" data-buy="${collectionName}" data-config='${JSON.stringify(config)}'>Buy</button>
+                                `}
+                                <button class="remove-btn" data-remove="${collectionName}" data-config='${JSON.stringify(config)}'>Remove</button>
+                            </div>
+                        </div>
+                    `).join("");
+                }
+
+                openOverlay(elements.drawerOverlay);
+            }
+
+            function removeFromCollection(collectionName, rawConfig) {
+                const config = normalizeGarageItem(JSON.parse(rawConfig));
+                currentUser[collectionName] = currentUser[collectionName].filter((item) => !configEquals(item, config));
+                updateUserCollections();
+                updateUiState();
+                renderDrawer(collectionName);
+                showToast("BMW build removed.");
+            }
+
+            function moveWishlistToCart(rawConfig) {
+                const config = normalizeGarageItem(JSON.parse(rawConfig));
+                const alreadyInCart = currentUser.cart.some((item) => configEquals(item, config));
+                if (!alreadyInCart) {
+                    currentUser.cart.push(config);
+                }
+                currentUser.wishlist = currentUser.wishlist.filter((item) => !configEquals(item, config));
+                updateUserCollections();
+                updateUiState();
+                renderDrawer("wishlist");
+                showToast(alreadyInCart ? "Already in cart. Removed from wishlist." : "Build moved to cart.");
+            }
+
+            function buyConfig(rawConfig, sourceCollection) {
+                const config = normalizeGarageItem(JSON.parse(rawConfig));
+                const car = getCarById(config.carId);
+                const color = getSelectedColor(car, config.colorId);
+                const wheel = getSelectedWheel(car, config.wheelId);
+                showToast(`Buying ${car.name} in ${color.name} with ${wheel.name}.`);
+                if (sourceCollection === "wishlist") {
+                    currentUser.wishlist = currentUser.wishlist.filter((item) => !configEquals(item, config));
+                    updateUserCollections();
+                    updateUiState();
+                    renderDrawer("wishlist");
+                }
+            }
+
+            function registerUser() {
+                const username = elements.username.value.trim();
+                const password = elements.password.value.trim();
+                if (!username || !password) {
+                    showToast("Enter both username and password.", "error");
+                    return;
+                }
+                if (users.some((user) => user.username.toLowerCase() === username.toLowerCase())) {
+                    showToast("Username already exists. Try logging in.", "error");
+                    return;
+                }
+                currentUser = { username, password, cart: [], wishlist: [] };
+                updateUserCollections();
+                updateUiState();
+                elements.authForm.reset();
+                closeOverlay(elements.authOverlay);
+                showToast(`Account created for ${username}.`);
+            }
+
+            function loginUser() {
+                const username = elements.username.value.trim();
+                const password = elements.password.value.trim();
+                const user = users.find((item) => item.username === username && item.password === password);
+                if (!user) {
+                    showToast("Invalid username or password.", "error");
+                    return;
+                }
+                currentUser = normalizeUser(user);
+                syncUsers();
+                updateUiState();
+                elements.authForm.reset();
+                closeOverlay(elements.authOverlay);
+                showToast(`Welcome back, ${username}.`);
+            }
+
+            function logoutUser() {
+                currentUser = null;
+                syncUsers();
+                updateUiState();
+                showToast("Logged out successfully.");
+            }
+
+            function requestLocation() {
+                if (!navigator.geolocation) {
+                    showToast("Geolocation is not supported in this browser.", "error");
+                    return;
+                }
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        savedLocation = {
+                            latitude: position.coords.latitude.toFixed(5),
+                            longitude: position.coords.longitude.toFixed(5),
+                            timestamp: new Date().toLocaleString()
+                        };
+                        writeStorage(storageKeys.location, savedLocation);
+                        updateUiState();
+                        showToast("Dealer location access granted.");
+                    },
+                    () => showToast("Location permission denied.", "error")
+                );
+            }
+
+            function saveBooking(event) {
+                event.preventDefault();
+                const booking = {
+                    date: elements.driveDate.value,
+                    city: elements.driveCity.value,
+                    modelId: elements.driveModel.value,
+                    phone: elements.drivePhone.value.trim(),
+                    name: elements.driveName.value.trim(),
+                    email: elements.driveEmail.value.trim(),
+                    notes: elements.driveNotes.value.trim()
+                };
+                writeStorage(storageKeys.booking, booking);
+                savedBooking = booking;
+                const bookedModel = getCarById(booking.modelId);
+                elements.bookingStatus.textContent = `Saved locally: ${booking.name} requested ${bookedModel.name} in ${booking.city} on ${booking.date}.`;
+                showToast("Test drive request saved locally.");
+            }
+
+            function hydrateBooking() {
+                if (!savedBooking) {
+                    return;
+                }
+                elements.driveDate.value = savedBooking.date || "";
+                elements.driveCity.value = savedBooking.city || "";
+                elements.driveModel.value = savedBooking.modelId || "";
+                elements.drivePhone.value = savedBooking.phone || "";
+                elements.driveName.value = savedBooking.name || "";
+                elements.driveEmail.value = savedBooking.email || "";
+                elements.driveNotes.value = savedBooking.notes || "";
+                const bookedModel = getCarById(savedBooking.modelId);
+                if (bookedModel) {
+                    elements.bookingStatus.textContent = `Latest saved request: ${savedBooking.name} for ${bookedModel.name} in ${savedBooking.city}.`;
+                }
+            }
+
+            function saveNewsletter() {
+                const email = elements.newsletterEmail.value.trim();
+                if (!email) {
+                    showToast("Enter an email to subscribe.", "error");
+                    return;
+                }
+                writeStorage(storageKeys.newsletter, { email, subscribedAt: new Date().toLocaleString() });
+                showToast("Newsletter subscription saved.");
+                elements.newsletterEmail.value = "";
+            }
+
+            function revealOnScroll() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("revealed");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+            }
+
+            function animateCounters() {
+                const counters = document.querySelectorAll("[data-counter]");
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+                        const element = entry.target;
+                        const target = Number(element.dataset.counter);
+                        let current = 0;
+                        const duration = 1300;
+                        const step = Math.max(1, Math.ceil(target / (duration / 16)));
+                        const timer = window.setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                current = target;
+                                window.clearInterval(timer);
+                            }
+                            element.textContent = current;
+                        }, 16);
+                        counterObserver.unobserve(element);
+                    });
+                }, { threshold: 0.5 });
+
+                counters.forEach((counter) => counterObserver.observe(counter));
+            }
+
+            // Chatbot config: keep provider API keys on a backend, never in browser JavaScript.
+            const chatConfig = {
+                apiEndpoint: "",
+                typingDelayMs: 650
+            };
+
+            const chatQuickPrompts = [
+                "Suggest by budget",
+                "Recommend EV",
+                "Fastest BMW here?",
+                "Best family SUV"
+            ];
+
+            const chatState = {
+                busy: false,
+                history: []
+            };
+
+            function initializeChatbot() {
+                renderChatSuggestions();
+                addChatMessage("bot", "I am your BMW assistant. Ask about budget, EV range, performance, family SUVs, colors, or test-drive choices.");
+            }
+
+            function renderChatSuggestions() {
+                elements.chatbotSuggestions.innerHTML = "";
+                chatQuickPrompts.forEach((prompt) => {
+                    const button = document.createElement("button");
+                    button.className = "bmw-chat-suggestion";
+                    button.type = "button";
+                    button.textContent = prompt;
+                    elements.chatbotSuggestions.appendChild(button);
+                });
+            }
+
+            async function sendChatMessage(messageText = elements.chatbotInput.value) {
+                const text = messageText.trim();
+                if (!text || chatState.busy) {
+                    return;
+                }
+
+                setChatBusy(true);
+                elements.chatbotInput.value = "";
+                elements.chatbotSuggestions.innerHTML = "";
+                addChatMessage("user", text);
+
+                const typingId = showChatTyping();
+
+                try {
+                    const reply = await getChatReply(text);
+                    removeChatMessage(typingId);
+                    addChatMessage("bot", reply);
+                } catch (error) {
+                    removeChatMessage(typingId);
+                    addChatMessage("bot", "I could not complete that request right now. Please try again in a moment.");
+                    elements.chatbotStatus.textContent = "Local assistant active";
+                } finally {
+                    setChatBusy(false);
+                    elements.chatbotInput.focus();
+                }
+            }
+
+            async function getChatReply(text) {
+                if (chatConfig.apiEndpoint) {
+                    const response = await fetch(chatConfig.apiEndpoint, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            message: text,
+                            history: chatState.history.slice(-10)
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Chat API request failed.");
+                    }
+
+                    const data = await response.json();
+                    if (!data || typeof data.reply !== "string") {
+                        throw new Error("Chat API response is missing a reply.");
+                    }
+
+                    return data.reply.trim();
+                }
+
+                await new Promise((resolve) => window.setTimeout(resolve, chatConfig.typingDelayMs));
+                return buildLocalChatReply(text);
+            }
+
+            // Local BMW knowledge engine so the chatbot runs immediately without a backend.
+            function buildLocalChatReply(userText) {
+                const text = userText.toLowerCase();
+                const electricCars = cars.filter((car) => car.category === "electric");
+                const suvCars = cars.filter((car) => car.family.toLowerCase().includes("suv"));
+                const cheapest = [...cars].sort((a, b) => a.priceValue - b.priceValue)[0];
+                const fastest = [...cars].sort((a, b) => parseFloat(a.acceleration) - parseFloat(b.acceleration))[0];
+                const mentioned = cars.find((car) => text.includes(car.name.toLowerCase()) || text.includes(car.id.toLowerCase()));
+
+                if (mentioned) {
+                    return formatChatCar(mentioned);
+                }
+
+                if (hasAny(text, ["hi", "hello", "hey"])) {
+                    return "Hello. Tell me your budget, body style, or driving need, and I will suggest the best BMW from this showroom.";
+                }
+
+                if (hasAny(text, ["budget", "affordable", "cheap", "lowest", "price"])) {
+                    return `${cheapest.name} is the most affordable option here at ${cheapest.priceLabel}.\n\n${formatChatCar(cheapest)}`;
+                }
+
+                if (hasAny(text, ["electric", "ev", "range", "battery"])) {
+                    return `Top electric options:\n\n${electricCars.map(formatChatCar).join("\n\n")}\n\nChoose the i7 for flagship luxury or the iX for electric SUV presence.`;
+                }
+
+                if (hasAny(text, ["performance", "fast", "fastest", "speed", "m model", "m car"])) {
+                    return `${fastest.name} is the quickest model listed at 0-100 km/h in ${fastest.acceleration}.\n\n${formatChatCar(fastest)}`;
+                }
+
+                if (hasAny(text, ["family", "kids", "space", "large", "suv"])) {
+                    const bestFamily = cars.find((car) => car.id === "x7") || suvCars[0];
+                    return `${bestFamily.name} is the strongest family pick because it focuses on space, comfort, and luxury SUV presence.\n\nOther SUV options: ${suvCars.map((car) => car.name).join(", ")}.`;
+                }
+
+                if (hasAny(text, ["city", "daily", "traffic", "compact"])) {
+                    return "For city and daily driving, pick a model that is easy to place and efficient. If you want electric luxury, start with the BMW iX; if you want a sharper premium daily, compare the sedan and coupe options in the lineup.";
+                }
+
+                if (hasAny(text, ["compare", "difference", "vs", "versus"])) {
+                    return `Quick comparison:\n\n${cars.slice(0, 4).map(formatChatCar).join("\n\n")}`;
+                }
+
+                if (hasAny(text, ["color", "paint", "colour"])) {
+                    return cars.map((car) => `${car.name}: ${car.colors.map((color) => color.name).join(", ")}`).join("\n");
+                }
+
+                if (hasAny(text, ["book", "booking", "test drive", "contact"])) {
+                    return "Use the booking section on this page to request a test drive. If you share your budget and preferred use, I can suggest which model to book first.";
+                }
+
+                return "I can help with BMW recommendations by budget, electric range, family use, performance, colors, and test drives. What matters most to you?";
+            }
+
+            function formatChatCar(car) {
+                return `${car.name} - ${car.family}\nPrice: ${car.priceLabel}\nPower: ${car.power}\nRange/Fuel: ${car.range}\n0-100 km/h: ${car.acceleration}\nBest note: ${car.tagline}`;
+            }
+
+            function hasAny(text, keywords) {
+                return keywords.some((keyword) => text.includes(keyword));
+            }
+
+            function addChatMessage(role, text) {
+                const id = `chat-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+                chatState.history.push({ role, text });
+
+                const message = document.createElement("article");
+                message.className = `bmw-chat-message ${role}`;
+                message.dataset.chatId = id;
+
+                const avatar = document.createElement("div");
+                avatar.className = "bmw-chat-message-avatar";
+                avatar.textContent = role === "user" ? "You" : "M";
+
+                const bubble = document.createElement("div");
+                bubble.className = "bmw-chat-bubble";
+                bubble.textContent = text;
+
+                message.append(avatar, bubble);
+                elements.chatbotBody.appendChild(message);
+                scrollChatToLatest();
+                return id;
+            }
+
+            function showChatTyping() {
+                const id = `chat-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+                const message = document.createElement("article");
+                message.className = "bmw-chat-message bot";
+                message.dataset.chatId = id;
+
+                const avatar = document.createElement("div");
+                avatar.className = "bmw-chat-message-avatar";
+                avatar.textContent = "M";
+
+                const bubble = document.createElement("div");
+                bubble.className = "bmw-chat-bubble";
+                bubble.setAttribute("aria-label", "Assistant is typing");
+
+                const typing = document.createElement("span");
+                typing.className = "bmw-chat-typing";
+                typing.innerHTML = "<span></span><span></span><span></span>";
+
+                bubble.appendChild(typing);
+                message.append(avatar, bubble);
+                elements.chatbotBody.appendChild(message);
+                scrollChatToLatest();
+                return id;
+            }
+
+            function removeChatMessage(id) {
+                const message = elements.chatbotBody.querySelector(`[data-chat-id="${id}"]`);
+                if (message) {
+                    message.remove();
+                }
+            }
+
+            function setChatBusy(isBusy) {
+                chatState.busy = isBusy;
+                elements.chatbotInput.disabled = isBusy;
+                elements.chatbotSend.disabled = isBusy;
+                elements.chatbotStatus.textContent = isBusy ? "Assistant is typing..." : "Online - ready to help";
+            }
+
+            function scrollChatToLatest() {
+                elements.chatbotBody.scrollTop = elements.chatbotBody.scrollHeight;
+            }
+
+            function toggleChatbot(forceOpen) {
+                const shouldOpen = typeof forceOpen === "boolean" ? forceOpen : elements.chatbot.classList.contains("is-hidden");
+                elements.chatbot.classList.toggle("is-hidden", !shouldOpen);
+                elements.chatbotToggle.setAttribute("aria-label", shouldOpen ? "Close chatbot" : "Open chatbot");
+                elements.chatbotToggle.innerHTML = shouldOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-comment-dots"></i>';
+
+                if (shouldOpen) {
+                    window.setTimeout(() => elements.chatbotInput.focus(), 80);
+                }
+            }
+
+            function bindEvents() {
+                elements.themeToggle.addEventListener("click", () => {
+                    const nextTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+                    updateTheme(nextTheme);
+                });
+
+                elements.authTrigger.addEventListener("click", () => openOverlay(elements.authOverlay));
+                elements.cartTrigger.addEventListener("click", () => renderDrawer("cart"));
+                elements.wishlistTrigger.addEventListener("click", () => renderDrawer("wishlist"));
+                elements.locationTrigger.addEventListener("click", requestLocation);
+                elements.logoutTrigger.addEventListener("click", logoutUser);
+                elements.loginBtn.addEventListener("click", loginUser);
+                elements.registerBtn.addEventListener("click", registerUser);
+                elements.discoverHeroBtn.addEventListener("click", () => document.getElementById("models").scrollIntoView({ behavior: "smooth" }));
+                elements.buildHeroBtn.addEventListener("click", () => document.getElementById("configurator").scrollIntoView({ behavior: "smooth" }));
+                elements.bookHeroBtn.addEventListener("click", () => document.getElementById("booking").scrollIntoView({ behavior: "smooth" }));
+                elements.saveBuildBtn.addEventListener("click", () => {
+                    writeStorage(storageKeys.config, currentConfig);
+                    showToast("Configuration saved locally.");
+                });
+                elements.addConfigCartBtn.addEventListener("click", () => addToCollection("cart", currentConfig));
+                elements.addConfigWishlistBtn.addEventListener("click", () => addToCollection("wishlist", currentConfig));
+                elements.bookingForm.addEventListener("submit", saveBooking);
+                elements.newsletterBtn.addEventListener("click", saveNewsletter);
+
+                elements.modelFilter.addEventListener("click", (event) => {
+                    const button = event.target.closest("[data-filter]");
+                    if (!button) {
+                        return;
+                    }
+                    activeCategory = button.dataset.filter;
+                    renderModelFilter();
+                    renderModels();
+                    revealOnScroll();
+                });
+
+                document.body.addEventListener("click", (event) => {
+                    const modelAction = event.target.closest("[data-model-action]");
+                    if (modelAction) {
+                        const carId = modelAction.dataset.carId;
+                        if (modelAction.dataset.modelAction === "explore") {
+                            openModelModal(carId);
+                        }
+                        if (modelAction.dataset.modelAction === "build") {
+                            jumpToConfigurator(carId);
+                        }
+                    }
+                });
+
+                elements.modalThumbs.addEventListener("click", (event) => {
+                    const image = event.target.closest("[data-image]");
+                    if (image) {
+                        elements.modalMainImage.src = image.dataset.image;
+                    }
+                });
+
+                elements.modalCartBtn.addEventListener("click", () => addToCollection("cart", getDefaultConfig(modalCarId)));
+                elements.modalWishlistBtn.addEventListener("click", () => addToCollection("wishlist", getDefaultConfig(modalCarId)));
+                elements.modalBuildBtn.addEventListener("click", () => {
+                    closeOverlay(elements.carModalOverlay);
+                    jumpToConfigurator(modalCarId);
+                });
+
+                elements.configModelOptions.addEventListener("click", (event) => {
+                    const button = event.target.closest("[data-config-type='model']");
+                    if (!button) return;
+                    currentConfig = getDefaultConfig(button.dataset.value);
+                    updateConfigPreview();
+                });
+
+                elements.configColorOptions.addEventListener("click", (event) => {
+                    const button = event.target.closest("[data-config-type='color']");
+                    if (!button) return;
+                    currentConfig.colorId = button.dataset.value;
+                    updateConfigPreview();
+                });
+
+                elements.configWheelOptions.addEventListener("click", (event) => {
+                    const button = event.target.closest("[data-config-type='wheel']");
+                    if (!button) return;
+                    currentConfig.wheelId = button.dataset.value;
+                    updateConfigPreview();
+                });
+
+                elements.configInteriorOptions.addEventListener("click", (event) => {
+                    const button = event.target.closest("[data-config-type='interior']");
+                    if (!button) return;
+                    currentConfig.interiorId = button.dataset.value;
+                    updateConfigPreview();
+                });
+
+                elements.configLightOptions.addEventListener("click", (event) => {
+                    const button = event.target.closest("[data-config-type='light']");
+                    if (!button) return;
+                    currentConfig.lightMode = button.dataset.value;
+                    updateConfigPreview();
+                });
+
+                elements.configModeOptions.addEventListener("click", (event) => {
+                    const button = event.target.closest("[data-config-type='mode']");
+                    if (!button) return;
+                    currentConfig.previewMode = button.dataset.value;
+                    updateConfigPreview();
+                });
+
+                document.querySelectorAll("[data-close]").forEach((button) => {
+                    button.addEventListener("click", () => closeOverlay(document.getElementById(button.dataset.close)));
+                });
+
+                document.querySelectorAll(".overlay").forEach((overlay) => {
+                    overlay.addEventListener("click", (event) => {
+                        if (event.target === overlay) {
+                            closeOverlay(overlay);
+                        }
+                    });
+                });
+
+                elements.drawerList.addEventListener("click", (event) => {
+                    const removeButton = event.target.closest("[data-remove]");
+                    if (removeButton) {
+                        removeFromCollection(removeButton.dataset.remove, removeButton.dataset.config);
+                        return;
+                    }
+
+                    const moveButton = event.target.closest("[data-move-cart]");
+                    if (moveButton) {
+                        moveWishlistToCart(moveButton.dataset.config);
+                        return;
+                    }
+
+                    const buyButton = event.target.closest("[data-buy]");
+                    if (buyButton) {
+                        buyConfig(buyButton.dataset.config, buyButton.dataset.buy);
+                    }
+                });
+
+                elements.chatbotToggle.addEventListener("click", () => toggleChatbot());
+                elements.chatbotClose.addEventListener("click", () => toggleChatbot(false));
+                elements.chatbotForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    sendChatMessage();
+                });
+                elements.chatbotInput.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" && !event.shiftKey) {
+                        event.preventDefault();
+                        sendChatMessage();
+                    }
+                });
+                elements.chatbotSuggestions.addEventListener("click", (event) => {
+                    const button = event.target.closest(".bmw-chat-suggestion");
+                    if (button) {
+                        sendChatMessage(button.textContent);
+                    }
+                });
+
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape") {
+                        document.querySelectorAll(".overlay.active").forEach((overlay) => closeOverlay(overlay));
+                    }
+                });
+            }
+
+            function initialize() {
+                renderModelFilter();
+                renderModels();
+                renderTechnologyFeatures();
+                renderOwnership();
+                renderTestimonials();
+                renderCompare();
+                populateBookingModels();
+                hydrateBooking();
+                updateTheme(readStorage(storageKeys.theme, "dark"));
+                updateConfigPreview();
+                updateUiState();
+                initializeChatbot();
+                bindEvents();
+                revealOnScroll();
+                animateCounters();
+
+                window.setTimeout(() => {
+                    document.body.classList.remove("loading");
+                    elements.loadingScreen.classList.add("hidden");
+                }, 800);
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
